@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.academiadecodigo.tailormoons.tailormoons</OriginalElement>
+  <nodes>
+    <node x="0.0" y="253.0">org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Ladder</node>
+    <node x="633.9232456140351" y="384.0">org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.Vando</node>
+    <node x="0.0" y="750.0">org.academiadecodigo.tailormoons.tailormoons.direction.Direction</node>
+    <node x="1020.1140350877193" y="361.0">org.academiadecodigo.tailormoons.tailormoons.arena.Arena</node>
+    <node x="590.125" y="67.5">org.academiadecodigo.tailormoons.tailormoons.arena.ColisionDetector</node>
+    <node x="956.125" y="67.5">org.academiadecodigo.tailormoons.tailormoons.player.KeyboardListener</node>
+    <node x="914.1140350877193" y="504.0">org.academiadecodigo.tailormoons.tailormoons.Menu</node>
+    <node x="449.5899122807018" y="230.0">org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.Enemy</node>
+    <node x="377.92324561403507" y="384.0">org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.Francisco</node>
+    <node x="226.0" y="750.0">org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.EnemyFactory</node>
+    <node x="1184.125" y="67.5">org.academiadecodigo.tailormoons.tailormoons.arena.ConstantPosition</node>
+    <node x="376.125" y="0.0">org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.EnemyType</node>
+    <node x="1022.1140350877193" y="492.0">org.academiadecodigo.tailormoons.tailormoons.Game</node>
+    <node x="128.0" y="253.0">org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Platform</node>
+    <node x="818.125" y="67.5">org.academiadecodigo.tailormoons.tailormoons.arena.Movable</node>
+    <node x="1172.125" y="241.0">org.academiadecodigo.tailormoons.tailormoons.arena.Level</node>
+    <node x="943.6140350877193" y="601.0">org.academiadecodigo.tailormoons.tailormoons.Main</node>
+    <node x="276.0" y="253.0">org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Key</node>
+    <node x="131.65570175438597" y="55.5">org.academiadecodigo.tailormoons.tailormoons.gameobject.GameObject</node>
+    <node x="786.453947368421" y="230.0">org.academiadecodigo.tailormoons.tailormoons.player.Player</node>
+    <node x="535.9232456140351" y="384.0">org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.Sid</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.academiadecodigo.tailormoons.tailormoons.Game" target="org.academiadecodigo.tailormoons.tailormoons.arena.Arena">
+      <point x="0.0" y="-29.5" />
+      <point x="0.0" y="40.5" />
+    </edge>
+    <edge source="org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.Enemy" target="org.academiadecodigo.tailormoons.tailormoons.arena.ColisionDetector">
+      <point x="28.25" y="-40.5" />
+      <point x="590.8399122807018" y="210.0" />
+      <point x="642.125" y="210.0" />
+      <point x="-52.0" y="17.5" />
+    </edge>
+    <edge source="org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Platform" target="org.academiadecodigo.tailormoons.tailormoons.gameobject.GameObject">
+      <point x="0.0" y="-17.5" />
+      <point x="192.0" y="210.0" />
+      <point x="187.15570175438597" y="210.0" />
+      <point x="-18.5" y="29.5" />
+    </edge>
+    <edge source="org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.Sid" target="org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.Enemy">
+      <point x="0.0" y="-17.5" />
+      <point x="574.9232456140351" y="336.0" />
+      <point x="562.5899122807018" y="336.0" />
+      <point x="0.0" y="40.5" />
+    </edge>
+    <edge source="org.academiadecodigo.tailormoons.tailormoons.Main" target="org.academiadecodigo.tailormoons.tailormoons.Menu">
+      <point x="-37.25" y="-52.0" />
+      <point x="980.8640350877193" y="576.0" />
+      <point x="958.1140350877193" y="576.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="org.academiadecodigo.tailormoons.tailormoons.player.Player" target="org.academiadecodigo.tailormoons.tailormoons.player.KeyboardListener">
+      <point x="77.66666666666669" y="-40.5" />
+      <point x="980.6206140350878" y="210.0" />
+      <point x="1060.125" y="210.0" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="org.academiadecodigo.tailormoons.tailormoons.arena.Level" target="org.academiadecodigo.tailormoons.tailormoons.arena.ConstantPosition">
+      <point x="0.0" y="-29.5" />
+      <point x="0.0" y="17.5" />
+    </edge>
+    <edge source="org.academiadecodigo.tailormoons.tailormoons.arena.Arena" target="org.academiadecodigo.tailormoons.tailormoons.arena.Level">
+      <point x="29.0" y="-40.5" />
+      <point x="1107.1140350877195" y="336.0" />
+      <point x="1288.125" y="336.0" />
+      <point x="0.0" y="29.5" />
+    </edge>
+    <edge source="org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.Vando" target="org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.Enemy">
+      <point x="0.0" y="-17.5" />
+      <point x="682.9232456140351" y="336.0" />
+      <point x="637.9232456140351" y="336.0" />
+      <point x="75.33333333333326" y="40.5" />
+    </edge>
+    <edge source="org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Key" target="org.academiadecodigo.tailormoons.tailormoons.gameobject.GameObject">
+      <point x="0.0" y="-17.5" />
+      <point x="315.0" y="210.0" />
+      <point x="224.15570175438597" y="210.0" />
+      <point x="18.5" y="29.5" />
+    </edge>
+    <edge source="org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.Enemy" target="org.academiadecodigo.tailormoons.tailormoons.gameobject.GameObject">
+      <point x="-84.75" y="-40.5" />
+      <point x="477.8399122807018" y="200.0" />
+      <point x="261.155701754386" y="200.0" />
+      <point x="55.5" y="29.5" />
+    </edge>
+    <edge source="org.academiadecodigo.tailormoons.tailormoons.Main" target="org.academiadecodigo.tailormoons.tailormoons.Game">
+      <point x="37.25" y="-52.0" />
+      <point x="1055.3640350877195" y="576.0" />
+      <point x="1078.1140350877195" y="576.0" />
+      <point x="0.0" y="29.5" />
+    </edge>
+    <edge source="org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.Enemy" target="org.academiadecodigo.tailormoons.tailormoons.arena.Movable">
+      <point x="84.75" y="-40.5" />
+      <point x="647.3399122807018" y="210.0" />
+      <point x="847.625" y="210.0" />
+      <point x="-29.5" y="17.5" />
+    </edge>
+    <edge source="org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.Enemy" target="org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.EnemyType">
+      <point x="-28.25" y="-40.5" />
+      <point x="534.3399122807018" y="190.0" />
+      <point x="473.125" y="190.0" />
+      <point x="0.0" y="85.0" />
+    </edge>
+    <edge source="org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.Francisco" target="org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.Enemy">
+      <point x="0.0" y="-17.5" />
+      <point x="446.92324561403507" y="336.0" />
+      <point x="487.25657894736844" y="336.0" />
+      <point x="-75.33333333333337" y="40.5" />
+    </edge>
+    <edge source="org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Ladder" target="org.academiadecodigo.tailormoons.tailormoons.gameobject.GameObject">
+      <point x="0.0" y="-17.5" />
+      <point x="54.0" y="210.0" />
+      <point x="150.15570175438597" y="210.0" />
+      <point x="-55.5" y="29.5" />
+    </edge>
+    <edge source="org.academiadecodigo.tailormoons.tailormoons.arena.Arena" target="org.academiadecodigo.tailormoons.tailormoons.player.Player">
+      <point x="-29.0" y="-40.5" />
+      <point x="1049.1140350877195" y="336.0" />
+      <point x="902.953947368421" y="336.0" />
+      <point x="0.0" y="40.5" />
+    </edge>
+    <edge source="org.academiadecodigo.tailormoons.tailormoons.player.Player" target="org.academiadecodigo.tailormoons.tailormoons.arena.ColisionDetector">
+      <point x="-77.66666666666663" y="-40.5" />
+      <point x="825.2872807017545" y="200.0" />
+      <point x="746.125" y="200.0" />
+      <point x="52.0" y="17.5" />
+    </edge>
+    <edge source="org.academiadecodigo.tailormoons.tailormoons.player.Player" target="org.academiadecodigo.tailormoons.tailormoons.arena.Movable">
+      <point x="5.6843418860808015E-14" y="-40.5" />
+      <point x="902.9539473684212" y="210.0" />
+      <point x="906.625" y="210.0" />
+      <point x="29.5" y="17.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.9614035087719298" x="702.5" y="460.0" />
+  <SelectedNodes>
+    <node>org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Key</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
