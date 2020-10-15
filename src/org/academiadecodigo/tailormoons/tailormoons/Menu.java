@@ -1,6 +1,8 @@
 package org.academiadecodigo.tailormoons.tailormoons;
 
-public class Menu {
+import org.academiadecodigo.tailormoons.tailormoons.handler.Interactable;
+
+public class Menu implements Interactable {
 
 
     public void display() {
@@ -11,5 +13,8 @@ public class Menu {
     }
 
 
+    @Override
+    public void setKeyPressed() {
 
+    }
 }

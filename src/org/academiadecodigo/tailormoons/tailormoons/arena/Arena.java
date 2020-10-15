@@ -7,14 +7,13 @@ public class Arena {
     private int height;
     private int width;
     private Level level;
-    private Player player;
+    private Player player = new Player();
+
 
     public void createLevel(int level) {
-
     }
 
     public void play() {
-
     }
 
 }
