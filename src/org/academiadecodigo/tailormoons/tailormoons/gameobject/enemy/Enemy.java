@@ -9,7 +9,6 @@ public abstract class Enemy extends GameObject implements Movable {
     private CollisionDetector collisionDetector;
     private EnemyType enemyType;
 
-
     @Override
     public void move() {
 
