@@ -4,6 +4,6 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 
 public interface Interactable {
 
-    void setKeyPressed(int keyPressed);
+    void setKey(int key, boolean state);
 
 }

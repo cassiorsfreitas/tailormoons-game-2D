@@ -16,7 +16,7 @@ public class Menu implements Interactable {
 
 
     @Override
-    public void setKeyPressed(int keyPressed) {
-        this.keyPressed = keyPressed;
+    public void setKey(int key, boolean state) {
+
     }
 }

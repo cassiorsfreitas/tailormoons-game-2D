@@ -1,5 +1,7 @@
 package org.academiadecodigo.tailormoons.tailormoons.gameobject;
 
+import org.academiadecodigo.tailormoons.tailormoons.arena.Arena;
+
 public class Position {
 
     private int x;
@@ -21,12 +23,38 @@ public class Position {
     }
 
 
-    public void setX(int x) {
+    public void setCoordinates(int moveX, int moveY, int width, int height) {
+
+        int nextX = x + moveX;
+        int nextY = y + moveY;
+
+        if (nextX < 0) {
+            nextX = 0;
+        }
+
+        if (nextX + width > Arena.getWidth()) {
+            nextX = Arena.getWidth() - width;
+        }
+
+        if (nextY < 0) {
+            nextY = 0;
+        }
+
+        if (nextY + height > Arena.getHeight()) {
+            nextY = Arena.getHeight() - height;
+        }
+
+        setX(nextX);
+        setY(nextY);
+    }
+
+
+    private void setX(int x) {
         this.x = x;
     }
 
 
-    public void setY(int y) {
+    private void setY(int y) {
         this.y = y;
     }
 

@@ -12,7 +12,7 @@ public class Game {
 
     public void init() {
         menu = new Menu();
-        arena = new Arena(800, 600);
+        arena = new Arena();
         keyboardListener = new KeyboardListener();
         keyboardListener.setEntity(arena.getPlayer());
     }

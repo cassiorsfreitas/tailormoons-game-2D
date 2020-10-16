@@ -16,14 +16,18 @@ public class Player implements Movable, Interactable {
     private Position position;
     private static final int HEIGHT = 100;
     private static final int WIDTH = 35;
-    private final int speed = 10;
+    private final int speed = 1;
     private final int maxJump = 75;
-    private final int gravityAcceleration = 10;
+    private final int gravityAcceleration = 1;
 
     private CollisionDetector collisionDetector;
 
     private boolean isJumping;
-    private int keyPressed;
+    private boolean isFalling;
+    private boolean up;
+    private boolean down;
+    private boolean left;
+    private boolean right;
     private int initialY;
 
     public Player() {
@@ -41,40 +45,36 @@ public class Player implements Movable, Interactable {
         int initialY = position.getY();
         int moveX = 0;
         int moveY = 0;
-        int gravity = 0;
+        int gravity;
 
         if (isJumping) {
             moveY = moveUp();
         }
 
-        switch (keyPressed) {
-            case KeyboardEvent.KEY_UP:
+        if (up) {
+            if (!isJumping) {
                 this.initialY = position.getY();
                 moveY = moveUp();
-                break;
+            }
+        }
 
-            case KeyboardEvent.KEY_DOWN:
-                moveDown();
-                break;
+        if (down) {
+            moveDown();
+        }
 
-            case KeyboardEvent.KEY_LEFT:
-                moveX = position.getX() + (Direction.LEFT.x * speed);
-                break;
+        if (left) {
+            moveX = Direction.LEFT.x * speed;
+        }
 
-            case KeyboardEvent.KEY_RIGHT:
-                moveX = position.getX() + (Direction.RIGHT.x * speed);
-                break;
-
-            default:
-                break;
+        if (right) {
+            moveX = Direction.RIGHT.x * speed;
         }
 
         gravity = gravity();
 
+        position.setCoordinates(moveX, moveY + gravity, WIDTH, HEIGHT);
 
-        rectangle.translate(moveX, moveY+gravity);
-
-        keyPressed = 0;
+        rectangle.translate(position.getX() - initialX, position.getY() - initialY);
 
     }
 
@@ -87,9 +87,7 @@ public class Player implements Movable, Interactable {
             isJumping = false;
             return 0;
         }
-
-        return Direction.UP.y * 10;
-
+        return Direction.UP.y;
     }
 
 
@@ -100,17 +98,31 @@ public class Player implements Movable, Interactable {
 
     private int gravity() {
         if (isJumping) {
-            return 0 ;
+            return 0;
         }
-
         return gravityAcceleration;
-
     }
 
 
     @Override
-    public void setKeyPressed(int keyPressed) {
-        this.keyPressed = keyPressed;
+    public void setKey(int key, boolean state) {
+        switch (key) {
+            case KeyboardEvent.KEY_UP:
+                up = state;
+                break;
+
+            case KeyboardEvent.KEY_DOWN:
+                down = state;
+                break;
+
+            case KeyboardEvent.KEY_LEFT:
+                left = state;
+                break;
+
+            case KeyboardEvent.KEY_RIGHT:
+                right = state;
+                break;
+        }
     }
 
 }

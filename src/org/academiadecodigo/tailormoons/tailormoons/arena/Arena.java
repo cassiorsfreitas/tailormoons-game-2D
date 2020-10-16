@@ -5,21 +5,15 @@ import org.academiadecodigo.tailormoons.tailormoons.player.Player;
 
 public class Arena {
 
-    private final Rectangle rectangle;
-    private final int height;
-    private final int width;
+    private Rectangle rectangle;
+    private static final int HEIGHT = 600;
+    private static final int WIDTH = 800;
     private Level level;
     private final Player player = new Player();
 
-    public Arena(int width, int height) {
-        this.width = width;
-        this.height = height;
-
-        rectangle = new Rectangle(0, 0, width, height);
-    }
-
 
     public void createLevel(int levelNumber) {
+        rectangle = new Rectangle(0, 0,WIDTH,HEIGHT);
         rectangle.draw();
     }
 
@@ -28,7 +22,7 @@ public class Arena {
 
         while (true) {
             try {
-                Thread.sleep(100);
+                Thread.sleep(5);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -41,4 +35,15 @@ public class Arena {
     public Player getPlayer() {
         return player;
     }
+
+
+    public static int getHeight() {
+        return HEIGHT;
+    }
+
+
+    public static int getWidth() {
+        return WIDTH;
+    }
+
 }

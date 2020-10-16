@@ -17,13 +17,13 @@ public class KeyboardListener implements KeyboardHandler {
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
-        entity.setKeyPressed(keyboardEvent.getKey());
+        entity.setKey(keyboardEvent.getKey(), true);
     }
 
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
-        entity.setKeyPressed(0);
+        entity.setKey(keyboardEvent.getKey(), false);
     }
 
 
@@ -35,6 +35,7 @@ public class KeyboardListener implements KeyboardHandler {
     private void startListening() {
         Keyboard keyboard = new Keyboard(this);
 
+        //PRESSED IMPLEMENTATION
         KeyboardEvent up = new KeyboardEvent();
         up.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         up.setKey(KeyboardEvent.KEY_UP);
@@ -59,6 +60,31 @@ public class KeyboardListener implements KeyboardHandler {
 
         keyboard.addEventListener(right);
 
+
+        //RELEASE IMPLEMENTATION
+        KeyboardEvent upRelease = new KeyboardEvent();
+        upRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        upRelease.setKey(KeyboardEvent.KEY_UP);
+
+        keyboard.addEventListener(upRelease);
+
+        KeyboardEvent downRelease = new KeyboardEvent();
+        downRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        downRelease.setKey(KeyboardEvent.KEY_DOWN);
+
+        keyboard.addEventListener(downRelease);
+
+        KeyboardEvent leftRelease = new KeyboardEvent();
+        leftRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        leftRelease.setKey(KeyboardEvent.KEY_LEFT);
+
+        keyboard.addEventListener(leftRelease);
+
+        KeyboardEvent rightRelease = new KeyboardEvent();
+        rightRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        rightRelease.setKey(KeyboardEvent.KEY_RIGHT);
+
+        keyboard.addEventListener(rightRelease);
 
     }
 }
