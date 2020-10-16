@@ -1,5 +1,4 @@
 package org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy;
-
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.tailormoons.tailormoons.arena.CollisionDetector;
@@ -17,16 +16,39 @@ public abstract class Enemy extends GameObject implements Movable {
     private boolean rightDirection;
 
     public Enemy () {
-        rectangle = new Rectangle(300, 500, 35, 100);
-        rectangle.setColor(Color.PINK);
+        newEnemy();
         display();
 
         int randomDirection = (int) (Math.random() * 2);
         rightDirection = randomDirection == 0;
     }
 
+    public Rectangle newEnemy(){
+        rectangle = new Rectangle(randomPositionX(), 500, 35, 100);
+        rectangle.setColor(Color.PINK);
+        return rectangle;
+    }
+
     public void display(){
         rectangle.fill();
+    }
+
+    public int randomPositionX() {
+        int earlyX = 0;
+        int random = (int) (Math.random() * 3);
+        switch (random) {
+            case 0:
+               earlyX = 200;
+               break;
+            case 1:
+                earlyX = 400;
+            case 2:
+                earlyX = 450;
+            case 3:
+                earlyX = 600;
+                break;
+        }
+        return earlyX;
     }
 
     @Override
