@@ -5,6 +5,7 @@ import org.academiadecodigo.tailormoons.tailormoons.arena.CollisionDetector;
 import org.academiadecodigo.tailormoons.tailormoons.arena.Movable;
 import org.academiadecodigo.tailormoons.tailormoons.direction.Direction;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.GameObject;
+import org.academiadecodigo.tailormoons.tailormoons.gameobject.Position;
 
 import java.util.Random;
 
@@ -12,26 +13,25 @@ public abstract class Enemy extends GameObject implements Movable {
 
     protected CollisionDetector collisionDetector;
     private EnemyType enemyType;
-    private Rectangle rectangle;
+    private final Rectangle rectangle;
+    private Position position;
+    private static final int HEIGHT = 50;
+    private static final int WIDTH = 35;
+    private final int speed = 1;
     private boolean rightDirection;
+    private boolean left;
+    private boolean right;
+    private int initialY;
 
     public Enemy () {
         super(0,0,0,0);
-        newEnemy();
-        display();
+        position = new Position(randomPositionX(), 550, WIDTH, HEIGHT);
+        rectangle = new Rectangle(position.getX(), position.getY(), WIDTH, HEIGHT);
+        rectangle.setColor(Color.MAGENTA);
+        rectangle.fill();
 
         int randomDirection = (int) (Math.random() * 2);
         rightDirection = randomDirection == 0;
-    }
-
-    public Rectangle newEnemy(){
-        rectangle = new Rectangle(randomPositionX(), 500, 25, 50);
-        rectangle.setColor(Color.PINK);
-        return rectangle;
-    }
-
-    public void display(){
-        rectangle.fill();
     }
 
     public int randomPositionX() {
@@ -54,10 +54,15 @@ public abstract class Enemy extends GameObject implements Movable {
 
     @Override
     public void move() {
+        int moveX = 1;
+        int moveY = 1;
+        int initialX = position.getX();
+        int initialY = position.getY();
+        position.setCoordinates(moveX, moveY);
         if (rightDirection) {
-            rectangle.translate(1, 0);
+            rectangle.translate(position.getX() - initialX, position.getY() - initialY);
         } else {
-            rectangle.translate(-1, 0);
+            rectangle.translate(-(position.getX()), position.getY() - initialY);
         }
     }
 }
