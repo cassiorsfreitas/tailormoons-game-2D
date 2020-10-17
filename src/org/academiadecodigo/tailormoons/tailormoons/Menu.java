@@ -8,10 +8,7 @@ public class Menu implements Interactable {
 
 
     public void display() {
-        while (true) {
 
-            return;
-        }
     }
 
 

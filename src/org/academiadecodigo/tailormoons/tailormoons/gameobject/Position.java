@@ -6,10 +6,14 @@ public class Position {
 
     private int x;
     private int y;
+    private int width;
+    private int height;
 
-    public Position(int x, int y) {
+    public Position(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
+        this.width = width;
+        this.height = height;
     }
 
 
@@ -23,7 +27,32 @@ public class Position {
     }
 
 
-    public void setCoordinates(int moveX, int moveY, int width, int height) {
+    public int getWidth() {
+        return width;
+    }
+
+
+    public int getHeight() {
+        return height;
+    }
+
+
+    private void setX(int x) {
+        this.x = x;
+    }
+
+
+    private void setY(int y) {
+        this.y = y;
+    }
+
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+
+    public void setCoordinates(int moveX, int moveY) {
 
         int nextX = x + moveX;
         int nextY = y + moveY;
@@ -46,16 +75,6 @@ public class Position {
 
         setX(nextX);
         setY(nextY);
-    }
-
-
-    private void setX(int x) {
-        this.x = x;
-    }
-
-
-    private void setY(int y) {
-        this.y = y;
     }
 
 }

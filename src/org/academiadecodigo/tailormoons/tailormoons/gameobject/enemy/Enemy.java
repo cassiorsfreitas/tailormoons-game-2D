@@ -6,8 +6,12 @@ import org.academiadecodigo.tailormoons.tailormoons.gameobject.GameObject;
 
 public abstract class Enemy extends GameObject implements Movable {
 
-    private CollisionDetector collisionDetector;
+    protected CollisionDetector collisionDetector;
     private EnemyType enemyType;
+
+    public Enemy() {
+        super(0,0,0,0); //MUDAR
+    }
 
 
     @Override

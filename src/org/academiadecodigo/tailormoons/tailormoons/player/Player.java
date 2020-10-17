@@ -31,7 +31,7 @@ public class Player implements Movable, Interactable {
     private int initialY;
 
     public Player() {
-        position = new Position(400, 500);
+        position = new Position(400, 500, WIDTH, HEIGHT);
         rectangle = new Rectangle(position.getX(), position.getY(), WIDTH, HEIGHT);
         rectangle.setColor(Color.MAGENTA);
         rectangle.draw();
@@ -57,22 +57,19 @@ public class Player implements Movable, Interactable {
                 moveY = moveUp();
             }
         }
-
         if (down) {
             moveDown();
         }
-
         if (left) {
             moveX = Direction.LEFT.x * speed;
         }
-
         if (right) {
             moveX = Direction.RIGHT.x * speed;
         }
 
         gravity = gravity();
 
-        position.setCoordinates(moveX, moveY + gravity, WIDTH, HEIGHT);
+        position.setCoordinates(moveX, moveY + gravity);
 
         rectangle.translate(position.getX() - initialX, position.getY() - initialY);
 
@@ -123,6 +120,10 @@ public class Player implements Movable, Interactable {
                 right = state;
                 break;
         }
+    }
+
+    public void setCollisionDetector(CollisionDetector collisionDetector) {
+        this.collisionDetector = collisionDetector;
     }
 
 }
