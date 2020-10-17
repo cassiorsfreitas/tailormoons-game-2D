@@ -2,60 +2,38 @@ package org.academiadecodigo.tailormoons.tailormoons.player;
 
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.tailormoons.tailormoons.arena.CollisionDetector;
 import org.academiadecodigo.tailormoons.tailormoons.arena.Movable;
+import org.academiadecodigo.tailormoons.tailormoons.direction.Direction;
+import org.academiadecodigo.tailormoons.tailormoons.gameobject.Position;
 import org.academiadecodigo.tailormoons.tailormoons.handler.Interactable;
 
 public class Player implements Movable, Interactable {
 
     //Change to picture
     private final Rectangle rectangle;
+    private Position position;
+    private static final int HEIGHT = 100;
+    private static final int WIDTH = 35;
+    private final int speed = 1;
+    private final int maxJump = 75;
+    private final int gravityAcceleration = 1;
+
     private CollisionDetector collisionDetector;
-    private final int gravity = 200;
-    private final int speed = 10;
+
+    private boolean isJumping;
+    private boolean isFalling;
+    private boolean up;
+    private boolean down;
+    private boolean left;
+    private boolean right;
+    private int initialY;
 
     public Player() {
-        rectangle = new Rectangle(400, 500, 35, 100);
+        position = new Position(400, 500, WIDTH, HEIGHT);
+        rectangle = new Rectangle(position.getX(), position.getY(), WIDTH, HEIGHT);
         rectangle.setColor(Color.MAGENTA);
-
-        startListening();
-    }
-
-
-    private void startListening() {
-        /*
-        Keyboard keyboard = new Keyboard(keyboardListener);
-
-        KeyboardEvent up = new KeyboardEvent();
-        up.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        up.setKey(KeyboardEvent.KEY_UP);
-
-        keyboard.addEventListener(up);
-
-        KeyboardEvent down = new KeyboardEvent();
-        down.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        down.setKey(KeyboardEvent.KEY_DOWN);
-
-        keyboard.addEventListener(down);
-
-        KeyboardEvent left = new KeyboardEvent();
-        left.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        left.setKey(KeyboardEvent.KEY_LEFT);
-
-        keyboard.addEventListener(left);
-
-        KeyboardEvent right = new KeyboardEvent();
-        right.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        right.setKey(KeyboardEvent.KEY_RIGHT);
-
-        keyboard.addEventListener(right);
-
-         */
-
-    }
-
-
-    public void display() {
         rectangle.draw();
     }
 
@@ -63,12 +41,89 @@ public class Player implements Movable, Interactable {
     @Override
     public void move() {
 
+        int initialX = position.getX();
+        int initialY = position.getY();
+        int moveX = 0;
+        int moveY = 0;
+        int gravity;
+
+        if (isJumping) {
+            moveY = moveUp();
+        }
+
+        if (up) {
+            if (!isJumping) {
+                this.initialY = position.getY();
+                moveY = moveUp();
+            }
+        }
+        if (down) {
+            moveDown();
+        }
+        if (left) {
+            moveX = Direction.LEFT.x * speed;
+        }
+        if (right) {
+            moveX = Direction.RIGHT.x * speed;
+        }
+
+        gravity = gravity();
+
+        position.setCoordinates(moveX, moveY + gravity);
+
+        rectangle.translate(position.getX() - initialX, position.getY() - initialY);
+
+    }
+
+
+    private int moveUp() {
+
+        isJumping = true;
+
+        if (position.getY() <= initialY - maxJump) {
+            isJumping = false;
+            return 0;
+        }
+        return Direction.UP.y;
+    }
+
+
+    private void moveDown() {
+
+    }
+
+
+    private int gravity() {
+        if (isJumping) {
+            return 0;
+        }
+        return gravityAcceleration;
     }
 
 
     @Override
-    public void setKeyPressed() {
+    public void setKey(int key, boolean state) {
+        switch (key) {
+            case KeyboardEvent.KEY_UP:
+                up = state;
+                break;
 
+            case KeyboardEvent.KEY_DOWN:
+                down = state;
+                break;
+
+            case KeyboardEvent.KEY_LEFT:
+                left = state;
+                break;
+
+            case KeyboardEvent.KEY_RIGHT:
+                right = state;
+                break;
+        }
     }
-    
+
+    public void setCollisionDetector(CollisionDetector collisionDetector) {
+        this.collisionDetector = collisionDetector;
+    }
+
 }

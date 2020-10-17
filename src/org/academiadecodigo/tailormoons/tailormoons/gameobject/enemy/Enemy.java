@@ -10,12 +10,13 @@ import java.util.Random;
 
 public abstract class Enemy extends GameObject implements Movable {
 
-    private CollisionDetector collisionDetector;
+    protected CollisionDetector collisionDetector;
     private EnemyType enemyType;
     private Rectangle rectangle;
     private boolean rightDirection;
 
     public Enemy () {
+        super(0,0,0,0);
         newEnemy();
         display();
 
