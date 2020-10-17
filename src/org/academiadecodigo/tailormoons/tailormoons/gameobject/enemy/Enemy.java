@@ -24,7 +24,7 @@ public abstract class Enemy extends GameObject implements Movable {
     }
 
     public Rectangle newEnemy(){
-        rectangle = new Rectangle(randomPositionX(), 500, 35, 100);
+        rectangle = new Rectangle(randomPositionX(), 500, 25, 50);
         rectangle.setColor(Color.PINK);
         return rectangle;
     }
