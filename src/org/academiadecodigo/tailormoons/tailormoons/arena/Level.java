@@ -16,7 +16,7 @@ public class Level {
     /**
      *
      */
-    private GameObject[] gameObjects = new GameObject[5]; //PODE SER TROCADO POR LINKEDLIST
+    private GameObject[] gameObjects = new GameObject[30]; //PODE SER TROCADO POR LINKEDLIST
 
     public void createEntities(int level) {
         for (int i = 0; i < ConstantPosition.PLATFORMS_AMOUNT[level]; i++) {
