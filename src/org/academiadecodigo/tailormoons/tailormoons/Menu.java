@@ -6,31 +6,61 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.tailormoons.tailormoons.handler.Interactable;
 
+/**
+ * Menu is a class that will display the game's welcome screen
+ */
 public class Menu implements Interactable {
 
-    private int keyPressed;
-    private boolean space;
+    /**
+     * The background of the Menu
+     * @var background
+     */
+    private Picture background;
 
+    /**
+     * The blinking text
+     * @var pressSpaceText
+     */
+    private Text pressSpaceText; //Replace with a .png image
+
+    /**
+     * A variable that saves when the space bar is pressed
+     * @var spaceBar
+     */
+    private boolean spaceBar;
+
+    private int keyPressed;
+
+    /**
+     * Initializes and displays all the Main Menu items
+     */
     public void display() {
 
-        Picture menuBackground = new Picture(10, 10, "assets/menuBackground.jpg");
-        menuBackground.draw();
+        background = new Picture(0, 0, "assets/menuBackground.jpg");
+        background.draw();
 
-        //Replace with a .png image
-        Text startGame = new Text(190, 450, "PRESS SPACE TO PUNISH YOU");
-        startGame.setColor(Color.WHITE);
-        startGame.draw();
+        pressSpaceText = new Text(190, 450, "PRESS SPACE TO PUNISH YOU");
+        pressSpaceText.setColor(Color.WHITE);
+        pressSpaceText.draw();
+    }
+
+    /**
+     * Clears all the Main Menu items
+     */
+    public void clearDisplay(){
+        background.delete();
+        pressSpaceText.delete();
     }
 
 
     @Override
     public void setKey(int key, boolean state) {
         if (key == KeyboardEvent.KEY_SPACE) {
-            space = state;
+            spaceBar = state;
         }
     }
 
-    public boolean getSpace(){
-        return space;
+    public boolean getSpaceBar(){
+        return spaceBar;
     }
 }

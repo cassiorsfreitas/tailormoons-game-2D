@@ -16,6 +16,8 @@ public class Game {
      */
     private Menu menu;
 
+    private static final int DELAY = 5;
+
     /**
      * Instantiation of class Arena to display the main window of the game
      *
@@ -45,12 +47,13 @@ public class Game {
 
         while (true){
             try {
-                Thread.sleep(5);
+                Thread.sleep(DELAY);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
-            if (menu.getSpace()){
+            if (menu.getSpaceBar()){
+                menu.clearDisplay();
                 arena = new Arena();
                 keyboardListener.setEntity(arena.getPlayer());
                 start();
