@@ -60,6 +60,12 @@ public class KeyboardListener implements KeyboardHandler {
 
         keyboard.addEventListener(right);
 
+        KeyboardEvent space = new KeyboardEvent();
+        space.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        space.setKey(KeyboardEvent.KEY_SPACE);
+
+        keyboard.addEventListener(space);
+
 
         //RELEASE IMPLEMENTATION
         KeyboardEvent upRelease = new KeyboardEvent();
@@ -85,6 +91,12 @@ public class KeyboardListener implements KeyboardHandler {
         rightRelease.setKey(KeyboardEvent.KEY_RIGHT);
 
         keyboard.addEventListener(rightRelease);
+
+        KeyboardEvent spaceRelease = new KeyboardEvent();
+        spaceRelease.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
+        spaceRelease.setKey(KeyboardEvent.KEY_SPACE);
+
+        keyboard.addEventListener(spaceRelease);
 
     }
 }

@@ -37,10 +37,16 @@ public class Game {
      * @param
      */
     public void init() {
-        menu = new Menu();
-        arena = new Arena();
         keyboardListener = new KeyboardListener();
-        keyboardListener.setEntity(arena.getPlayer());
+        menu = new Menu();
+
+        menu.display();
+
+        if (menu.getKeyPressed() == 1){
+            arena = new Arena();
+            keyboardListener.setEntity(arena.getPlayer());
+            start();
+        }
     }
 
 
