@@ -40,12 +40,21 @@ public class Game {
         keyboardListener = new KeyboardListener();
         menu = new Menu();
 
+        keyboardListener.setEntity(menu);
         menu.display();
 
-        if (menu.getKeyPressed() == 1){
-            arena = new Arena();
-            keyboardListener.setEntity(arena.getPlayer());
-            start();
+        while (true){
+            try {
+                Thread.sleep(5);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            if (menu.getSpace()){
+                arena = new Arena();
+                keyboardListener.setEntity(arena.getPlayer());
+                start();
+            }
         }
     }
 

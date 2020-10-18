@@ -9,13 +9,14 @@ import org.academiadecodigo.tailormoons.tailormoons.handler.Interactable;
 public class Menu implements Interactable {
 
     private int keyPressed;
+    private boolean space;
 
     public void display() {
 
         Picture menuBackground = new Picture(10, 10, "assets/menuBackground.jpg");
         menuBackground.draw();
 
-        //Change this text for a .png image
+        //Replace with a .png image
         Text startGame = new Text(190, 450, "PRESS SPACE TO PUNISH YOU");
         startGame.setColor(Color.WHITE);
         startGame.draw();
@@ -25,11 +26,11 @@ public class Menu implements Interactable {
     @Override
     public void setKey(int key, boolean state) {
         if (key == KeyboardEvent.KEY_SPACE) {
-            keyPressed = 1;
+            space = state;
         }
     }
 
-    public int getKeyPressed() {
-        return keyPressed;
+    public boolean getSpace(){
+        return space;
     }
 }
