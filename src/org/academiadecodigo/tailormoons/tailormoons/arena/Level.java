@@ -17,7 +17,7 @@ public class Level {
     private GameObject[] gameObjects = new GameObject[5]; //PODE SER TROCADO POR LINKEDLIST
 
     public void createEntities(int level) {
-        for (int i = 0; i < ConstantPosition.PLATFORMS_AMOUNT[level]; i++) {
+        for (int i = 0; i < ConstantPosition.PLATFORMS_AMOUNT[level-1]; i++) {
             int x = ConstantPosition.PLATFORMS[i][0];
             int y = ConstantPosition.PLATFORMS[i][1];
             int width = ConstantPosition.PLATFORMS[i][2];
@@ -27,7 +27,7 @@ public class Level {
         }
 
         //TEMPORARY ENEMY
-        gameObjects[2] = new Sid();
+        //gameObjects[2] = new Sid();
     }
 
     public GameObject[] getGameObjects() {

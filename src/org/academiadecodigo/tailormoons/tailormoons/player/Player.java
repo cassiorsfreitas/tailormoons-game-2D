@@ -45,7 +45,7 @@ public class Player implements Movable, Interactable {
         int initialY = position.getY();
         int moveX = 0;
         int moveY = 0;
-        int gravity;
+        int gravity = 0;
 
         if (isJumping) {
             moveY = moveUp();
@@ -67,7 +67,10 @@ public class Player implements Movable, Interactable {
             moveX = Direction.RIGHT.x * speed;
         }
 
-        gravity = gravity();
+
+        if (collisionDetector.hasGravity(position)) {
+            gravity = gravity();
+        }
 
         position.setCoordinates(moveX, moveY + gravity);
 

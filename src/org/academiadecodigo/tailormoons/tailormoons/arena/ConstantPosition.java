@@ -2,6 +2,8 @@ package org.academiadecodigo.tailormoons.tailormoons.arena;
 
 public class ConstantPosition {
 
+    public static final int LEVELS = 3;
+
     public static final int[] PLATFORMS_AMOUNT = {2, 2, 2};
     public static final int[] LADDERS_AMOUNT = {1, 1, 1};
     public static final int[] KEYS_AMOUNT = {2, 2, 2};
