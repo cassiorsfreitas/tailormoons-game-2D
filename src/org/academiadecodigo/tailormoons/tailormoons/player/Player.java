@@ -34,7 +34,8 @@ public class Player implements Movable, Interactable {
         position = new Position(400, 500, WIDTH, HEIGHT);
         rectangle = new Rectangle(position.getX(), position.getY(), WIDTH, HEIGHT);
         rectangle.setColor(Color.MAGENTA);
-        rectangle.draw();
+        // Hiding the player to test
+        // rectangle.draw();
     }
 
 

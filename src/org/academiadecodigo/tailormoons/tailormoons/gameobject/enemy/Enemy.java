@@ -7,8 +7,6 @@ import org.academiadecodigo.tailormoons.tailormoons.direction.Direction;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.GameObject;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.Position;
 
-import java.util.Random;
-
 public abstract class Enemy extends GameObject implements Movable {
 
     protected CollisionDetector collisionDetector;
@@ -17,11 +15,7 @@ public abstract class Enemy extends GameObject implements Movable {
     private Position position;
     private static final int HEIGHT = 50;
     private static final int WIDTH = 35;
-    private final int speed = 1;
     private boolean rightDirection;
-    private boolean left;
-    private boolean right;
-    private int initialY;
 
     public Enemy () {
         super(0,0,0,0);
@@ -34,6 +28,11 @@ public abstract class Enemy extends GameObject implements Movable {
         rightDirection = randomDirection == 0;
     }
 
+    /**
+     * This method generates predefined random positions for each enemy
+     * @return
+     */
+
     public int randomPositionX() {
         int earlyX = 0;
         int random = (int) (Math.random() * 3);
@@ -43,8 +42,10 @@ public abstract class Enemy extends GameObject implements Movable {
                break;
             case 1:
                 earlyX = 400;
+                break;
             case 2:
                 earlyX = 450;
+                break;
             case 3:
                 earlyX = 600;
                 break;
@@ -54,15 +55,21 @@ public abstract class Enemy extends GameObject implements Movable {
 
     @Override
     public void move() {
-        int moveX = 1;
-        int moveY = 1;
         int initialX = position.getX();
-        int initialY = position.getY();
-        position.setCoordinates(moveX, moveY);
+        int moveX = 0;
+        int moveY = 0;
+
         if (rightDirection) {
-            rectangle.translate(position.getX() - initialX, position.getY() - initialY);
+            moveX = 1;
         } else {
-            rectangle.translate(-(position.getX()), position.getY() - initialY);
+            moveX = -1;
         }
+
+        position.setCoordinates(moveX, moveY);
+        rectangle.translate(position.getX() - initialX, 0);
+    }
+
+    public void setCollisionDetector(CollisionDetector collisionDetector) {
+        this.collisionDetector = collisionDetector;
     }
 }
