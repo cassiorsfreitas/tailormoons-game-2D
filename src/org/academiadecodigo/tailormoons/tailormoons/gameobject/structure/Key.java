@@ -4,4 +4,8 @@ import org.academiadecodigo.tailormoons.tailormoons.gameobject.GameObject;
 
 public class Key extends GameObject {
 
+    public Key(int x, int y, int width, int height) {
+        super(x, y, width, height);
+    }
+
 }
