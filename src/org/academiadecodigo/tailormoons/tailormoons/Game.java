@@ -52,7 +52,7 @@ public class Game {
     public void start() {
 
         //TEM DE ENTRAR PRIMEIRO NO MENU E ESPERAR QUE SEJA DEVOLVIDO ALGO PARA INICIAR A ARENA.
-        arena.createLevel(1);
+        arena.createLevel(2);
         arena.play();
     }
 

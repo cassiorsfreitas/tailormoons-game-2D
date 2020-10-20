@@ -46,6 +46,17 @@ public class Level {
             gameObjects[ConstantPosition.PLATFORMS_AMOUNT[level] + ConstantPosition.LADDERS_AMOUNT[level] + i].show();
         }
 
+        for (int i = 0; i < ConstantPosition.ELEVATORS_AMOUNT[level]; i++) {
+            int x = ConstantPosition.KEYS[i][0];
+            int y = ConstantPosition.KEYS[i][1];
+            int width = ConstantPosition.KEYS[i][2];
+            int height = ConstantPosition.KEYS[i][3];
+            gameObjects[ConstantPosition.PLATFORMS_AMOUNT[level] + ConstantPosition.LADDERS_AMOUNT[level] + i] + ConstantPosition.KEYS_AMOUNT[level] + i] = new Key(x, y, width, height);
+            gameObjects[ConstantPosition.PLATFORMS_AMOUNT[level] + ConstantPosition.LADDERS_AMOUNT[level] + i].show();
+        }
+
+
+
 
         //TEMPORARY ENEMY
         //gameObjects[2] = new Sid();
