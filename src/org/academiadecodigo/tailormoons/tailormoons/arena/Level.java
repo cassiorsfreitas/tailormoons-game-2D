@@ -53,7 +53,7 @@ public class Level {
             int height = ConstantPosition.ENEMIES[i][3];
             int minMove = ConstantPosition.ENEMIES[i][4];
             int maxMove = ConstantPosition.ENEMIES[i][5];
-            gameObjects[ConstantPosition.KEYS_AMOUNT[level] + ConstantPosition.PLATFORMS_AMOUNT[level] + ConstantPosition.LADDERS_AMOUNT[level] + i] = new Sid(x, y, width, height);
+            gameObjects[ConstantPosition.KEYS_AMOUNT[level] + ConstantPosition.PLATFORMS_AMOUNT[level] + ConstantPosition.LADDERS_AMOUNT[level] + i] = new Sid(x, y, width, height, minMove, maxMove);
             gameObjects[ConstantPosition.KEYS_AMOUNT[level] + ConstantPosition.PLATFORMS_AMOUNT[level] + ConstantPosition.LADDERS_AMOUNT[level] + i].fill();
         }
     }

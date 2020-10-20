@@ -17,8 +17,8 @@ public abstract class Enemy extends GameObject implements Movable {
     //private EnemyType enemyType;
 
 
-    public Enemy (int x, int y, int width, int height) {
-        super(x,y,width,height);
+    public Enemy (int x, int y, int width, int height, int minMove, int maxMove) {
+        super(x,y,width,height, minMove, maxMove);
 
         int randomDirection = (int) (Math.random() * 2);
         rightDirection = randomDirection == 0;
@@ -36,14 +36,14 @@ public abstract class Enemy extends GameObject implements Movable {
 
         if (!rightDirection){
             moveX = -1;
-            if (initialX == 0) {
+            if (initialX == super.getMinMove()) {
                 rightDirection = true;
             }
         }
 
         if (rightDirection) {
             moveX = 1;
-            if (initialX == 800 - super.getPosition().getWidth()) {
+            if (initialX == super.getMaxMove()) {
                 rightDirection = false;
             }
         }
