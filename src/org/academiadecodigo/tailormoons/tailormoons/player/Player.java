@@ -81,12 +81,16 @@ public class Player implements Movable, Interactable {
 
     private int moveUp() {
 
-        isJumping = true;
 
-        if (position.getY() <= initialY - maxJump || position.getY() == 0) {
+        if (position.getY() <= initialY - maxJump || position.getY() == 0 || !collisionDetector.canJump(position)) {
             isJumping = false;
+            isFalling = true;
             return 0;
         }
+
+        isJumping = true;
+        isFalling = false;
+
         return Direction.UP.y;
     }
 
@@ -97,7 +101,8 @@ public class Player implements Movable, Interactable {
 
 
     private int gravity() {
-        if (isJumping) {
+        if (isJumping || !collisionDetector.hasGravity(position)) {
+
             return 0;
         }
         return gravityAcceleration;
