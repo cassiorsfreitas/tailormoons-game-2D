@@ -5,7 +5,7 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 public abstract class GameObject {
 
     private final Position position;
-    private final Rectangle rectangle;
+    protected final Rectangle rectangle;
 
     public GameObject(int x, int y, int width, int height) {
         position = new Position(x, y, width, height);

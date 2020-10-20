@@ -48,11 +48,15 @@ public class Level {
 
 
         //TEMPORARY ENEMY
-        /*
-        for (int i = 0; i < gameObjects.length; i++) {
-            gameObjects[i] = new Sid();
+
+        for (int i = 0; i < ConstantPosition.ENEMIES_AMOUNT[level]; i++) {
+            int x = ConstantPosition.ENEMIES[i][0];
+            int y = ConstantPosition.ENEMIES[i][1];
+            int width = ConstantPosition.ENEMIES[i][2];
+            int height = ConstantPosition.ENEMIES[i][3];
+            gameObjects[ConstantPosition.KEYS_AMOUNT[level] + ConstantPosition.PLATFORMS_AMOUNT[level] + ConstantPosition.LADDERS_AMOUNT[level] + i] = new Sid(x, y, width, height);
+            gameObjects[ConstantPosition.KEYS_AMOUNT[level] + ConstantPosition.PLATFORMS_AMOUNT[level] + ConstantPosition.LADDERS_AMOUNT[level] + i].show();
         }
-         */
     }
 
     public GameObject[] getGameObjects() {
