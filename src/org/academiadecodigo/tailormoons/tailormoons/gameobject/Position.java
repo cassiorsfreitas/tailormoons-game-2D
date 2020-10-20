@@ -51,7 +51,11 @@ public class Position {
         this.height = height;
     }
 
-
+    /**
+     *
+     * @param moveX
+     * @param moveY
+     */
     public void setCoordinates(int moveX, int moveY) {
 
         int nextX = x + moveX;

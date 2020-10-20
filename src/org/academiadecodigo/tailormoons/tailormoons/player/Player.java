@@ -14,7 +14,7 @@ public class Player implements Movable, Interactable {
     //Change to picture
     private final Rectangle rectangle;
     private Position position;
-    private static final int HEIGHT = 100;
+    private static final int HEIGHT = 50;
     private static final int WIDTH = 35;
     private final int speed = 1;
     private final int maxJump = 75;
@@ -33,7 +33,7 @@ public class Player implements Movable, Interactable {
     private int lives;
 
     public Player() {
-        position = new Position(400, 500, WIDTH, HEIGHT);
+        position = new Position(400, 400, WIDTH, HEIGHT);
         rectangle = new Rectangle(position.getX(), position.getY(), WIDTH, HEIGHT);
         rectangle.setColor(Color.MAGENTA);
         rectangle.draw();
@@ -48,7 +48,7 @@ public class Player implements Movable, Interactable {
         int initialY = position.getY();
         int moveX = 0;
         int moveY = 0;
-        int gravity;
+        int gravity = 0;
 
         if (isJumping) {
             moveY = moveUp();
@@ -70,7 +70,10 @@ public class Player implements Movable, Interactable {
             moveX = Direction.RIGHT.x * speed;
         }
 
-        gravity = gravity();
+
+        if (collisionDetector.hasGravity(position)) {
+            gravity = gravity();
+        }
 
         position.setCoordinates(moveX, moveY + gravity);
 
@@ -81,12 +84,16 @@ public class Player implements Movable, Interactable {
 
     private int moveUp() {
 
-        isJumping = true;
 
-        if (position.getY() <= initialY - maxJump) {
+        if (position.getY() <= initialY - maxJump || position.getY() == 0 || !collisionDetector.canJump(position)) {
             isJumping = false;
+            isFalling = true;
             return 0;
         }
+
+        isJumping = true;
+        isFalling = false;
+
         return Direction.UP.y;
     }
 
@@ -97,7 +104,8 @@ public class Player implements Movable, Interactable {
 
 
     private int gravity() {
-        if (isJumping) {
+        if (isJumping || !collisionDetector.hasGravity(position)) {
+
             return 0;
         }
         return gravityAcceleration;
