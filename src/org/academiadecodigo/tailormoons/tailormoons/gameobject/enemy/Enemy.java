@@ -3,10 +3,8 @@ import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.tailormoons.tailormoons.arena.CollisionDetector;
 import org.academiadecodigo.tailormoons.tailormoons.arena.Movable;
-import org.academiadecodigo.tailormoons.tailormoons.direction.Direction;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.GameObject;
 
-import java.util.Random;
 
 public abstract class Enemy extends GameObject implements Movable {
 
@@ -59,5 +57,10 @@ public abstract class Enemy extends GameObject implements Movable {
         } else {
             rectangle.translate(-1, 0);
         }
+    }
+
+
+    public void setCollisionDetector(CollisionDetector collisionDetector) {
+        this.collisionDetector = collisionDetector;
     }
 }
