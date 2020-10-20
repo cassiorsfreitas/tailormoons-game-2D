@@ -13,7 +13,7 @@ public class Player implements Movable, Interactable {
 
     //Change to picture
     private final Rectangle rectangle;
-    private Position position;
+    private final Position position;
     private static final int HEIGHT = 50;
     private static final int WIDTH = 35;
     private final int speed = 1;
@@ -52,7 +52,7 @@ public class Player implements Movable, Interactable {
         }
 
         if (up) {
-            if (!isJumping) {
+            if (!isJumping && !isFalling) {
                 this.initialY = position.getY();
                 moveY = moveUp();
             }
@@ -67,10 +67,7 @@ public class Player implements Movable, Interactable {
             moveX = Direction.RIGHT.x * speed;
         }
 
-
-        if (collisionDetector.hasGravity(position)) {
-            gravity = gravity();
-        }
+        gravity = gravity();
 
         position.setCoordinates(moveX, moveY + gravity);
 
@@ -81,8 +78,16 @@ public class Player implements Movable, Interactable {
 
     private int moveUp() {
 
+        if (collisionDetector.hasLadderCollision(position)) {
+            isJumping = false;
+            isFalling = false;
+            if (collisionDetector.canMoveUp(position)) {
+                return Direction.UP.y;
+            }
+            return 0;
+        }
 
-        if (position.getY() <= initialY - maxJump || position.getY() == 0 || !collisionDetector.canJump(position)) {
+        if (position.getY() <= initialY - maxJump || position.getY() == 0 || !collisionDetector.canMoveUp(position)) {
             isJumping = false;
             isFalling = true;
             return 0;
@@ -96,15 +101,16 @@ public class Player implements Movable, Interactable {
 
 
     private void moveDown() {
-
+        boolean meh = collisionDetector.hasLadderCollision(position);
     }
 
 
     private int gravity() {
-        if (isJumping || !collisionDetector.hasGravity(position)) {
-
+        if (isJumping || !collisionDetector.hasGravity(position) || collisionDetector.hasLadderCollision(position)) {
+            isFalling = false;
             return 0;
         }
+        isFalling = true;
         return gravityAcceleration;
     }
 
