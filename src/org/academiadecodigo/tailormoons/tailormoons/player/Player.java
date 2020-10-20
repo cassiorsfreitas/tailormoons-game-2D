@@ -14,7 +14,7 @@ public class Player implements Movable, Interactable {
     //Change to picture
     private final Rectangle rectangle;
     private Position position;
-    private static final int HEIGHT = 75;
+    private static final int HEIGHT = 50;
     private static final int WIDTH = 35;
     private final int speed = 1;
     private final int maxJump = 75;
