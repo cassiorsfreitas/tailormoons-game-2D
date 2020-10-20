@@ -47,14 +47,14 @@ public class Game {
         keyboardListener.setEntity(menu);
         menu.display();
 
-        while (true){
+        while (true) {
             try {
                 Thread.sleep(DELAY);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
-            if (menu.getSpaceBar()){
+            if (menu.getSpaceBar()) {
                 menu.clearDisplay();
                 arena = new Arena();
                 keyboardListener.setEntity(arena.getPlayer());
@@ -79,29 +79,35 @@ public class Game {
 
         //Starting numbers
         int totalLevels = 3;
-        int level = 0;
+        int level = 1;
         int keys = 0;
+        int playerLives = 3;
 
 
-        while (keys < ConstantPosition.KEYS_AMOUNT[level]){
-            //CAT CAN BE TOUCHED AND
-            level++;
+        while (level < totalLevels + 1) {
 
-            if (level > totalLevels - 1){
-                //YOU WON SCREEN
-                break;
-            }
             arena.createLevel(level);
-            arena.play();
 
-            //WHEN COLLIDES WITH A KEY
-            //keys++;
+            while (playerLives > 0) {
 
-            //WHEN COLLIDES WITH AN ENEMY
-            //lives--;
+                while (keys < ConstantPosition.KEYS_AMOUNT[level]) {
 
+                    arena.play();
+
+                    //IF COLLIDES WITH A KEY
+                    //keys++;
+
+                    //IF COLLIDES WITH AN ENEMY
+                    //lives--;
+
+                    //IF TOUCHES CAT
+                    //level++;
+
+                }
+            }
+            //GAME OVER SCREEN
         }
-
+        //YOU WON SCREEN
     }
 
 }
