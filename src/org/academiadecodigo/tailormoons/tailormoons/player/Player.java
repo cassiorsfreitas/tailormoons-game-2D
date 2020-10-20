@@ -35,7 +35,7 @@ public class Player implements Movable, Interactable {
         rectangle = new Rectangle(position.getX(), position.getY(), WIDTH, HEIGHT);
         rectangle.setColor(Color.MAGENTA);
         // Hiding the player to test
-        // rectangle.draw();
+        rectangle.draw();
     }
 
 
@@ -98,7 +98,7 @@ public class Player implements Movable, Interactable {
 
 
     private int gravity() {
-        if (isJumping) {
+        if (isJumping || !collisionDetector.hasGravity(position)) {
             return 0;
         }
         return gravityAcceleration;
