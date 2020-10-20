@@ -16,36 +16,35 @@ public class Level {
     /**
      *
      */
-    private GameObject[] gameObjects = new GameObject[30]; //PODE SER TROCADO POR LINKEDLIST
+    private GameObject[] gameObjects = new GameObject[50]; //PODE SER TROCADO POR LINKEDLIST
 
     public void createEntities(int level) {
         for (int i = 0; i < ConstantPosition.PLATFORMS_AMOUNT[level]; i++) {
-            int x = ConstantPosition.PLATFORMS[i][0];
-            int y = ConstantPosition.PLATFORMS[i][1];
-            int width = ConstantPosition.PLATFORMS[i][2];
-            int height = ConstantPosition.PLATFORMS[i][3];
+            int x = ConstantPosition.PLATFORMS[level][i][0];
+            int y = ConstantPosition.PLATFORMS[level][i][1];
+            int width = ConstantPosition.PLATFORMS[level][i][2];
+            int height = ConstantPosition.PLATFORMS[level][i][3];
             gameObjects[i] = new Platform(x, y, width, height);
             gameObjects[i].show();
         }
 
         for (int i = 0; i < ConstantPosition.LADDERS_AMOUNT[level]; i++) {
-            int x = ConstantPosition.LADDERS[i][0];
-            int y = ConstantPosition.LADDERS[i][1];
-            int width = ConstantPosition.LADDERS[i][2];
-            int height = ConstantPosition.LADDERS[i][3];
-            gameObjects[i] = new Ladder(x, y, width, height);
-            gameObjects[i].show();
+            int x = ConstantPosition.LADDERS[level][i][0];
+            int y = ConstantPosition.LADDERS[level][i][1];
+            int width = ConstantPosition.LADDERS[level][i][2];
+            int height = ConstantPosition.LADDERS[level][i][3];
+            gameObjects[ConstantPosition.PLATFORMS_AMOUNT[level] + i] = new Ladder(x, y, width, height);
+            gameObjects[ConstantPosition.PLATFORMS_AMOUNT[level] + i].show();
         }
 
         for (int i = 0; i < ConstantPosition.KEYS_AMOUNT[level]; i++) {
-            int x = ConstantPosition.KEYS[i][0];
-            int y = ConstantPosition.KEYS[i][1];
-            int width = ConstantPosition.KEYS[i][2];
-            int height = ConstantPosition.KEYS[i][3];
-            gameObjects[i] = new Key(x, y, width, height);
-            gameObjects[i].show();
+            int x = ConstantPosition.KEYS[level][i][0];
+            int y = ConstantPosition.KEYS[level][i][1];
+            int width = ConstantPosition.KEYS[level][i][2];
+            int height = ConstantPosition.KEYS[level][i][3];
+            gameObjects[ConstantPosition.PLATFORMS_AMOUNT[level] + ConstantPosition.LADDERS_AMOUNT[level] + i] = new Key(x, y, width, height);
+            gameObjects[ConstantPosition.PLATFORMS_AMOUNT[level] + ConstantPosition.LADDERS_AMOUNT[level] + i].show();
         }
-
 
 
         //TEMPORARY ENEMY
