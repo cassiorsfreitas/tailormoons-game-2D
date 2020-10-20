@@ -93,15 +93,10 @@ public class CollisionDetector {
                 int platformHeight = gameObject.getPosition().getHeight();
                 int platformWidth = gameObject.getPosition().getWidth();
 
-                for (int i = platformY; i < platformY + platformHeight; i++) {
-
-                    for (int X = x; X <= x + width; X++) {
-
-                        if (y + height + 1 == platformY && i == X) {
-                            return false;
-                        }
-                    }
+                for (int i = y; i <= y + height; i++) {
+                    
                 }
+
             }
         }
 
