@@ -1,7 +1,9 @@
 package org.academiadecodigo.tailormoons.tailormoons;
 
 import org.academiadecodigo.tailormoons.tailormoons.arena.Arena;
+import org.academiadecodigo.tailormoons.tailormoons.arena.ConstantPosition;
 import org.academiadecodigo.tailormoons.tailormoons.handler.KeyboardListener;
+import org.academiadecodigo.tailormoons.tailormoons.player.Player;
 
 /**
  * Game is the class delegate to process all the logic of "what a game is".
@@ -69,9 +71,37 @@ public class Game {
      */
     public void start() {
 
-        //TEM DE ENTRAR PRIMEIRO NO MENU E ESPERAR QUE SEJA DEVOLVIDO ALGO PARA INICIAR A ARENA.
-        arena.createLevel(1);
-        arena.play();
+        //ARENA INICIA O LEVEL
+        //QUANDO AS KEYS == AO TOTAL DE KEYS DO LEVEL -> PODE TOCAR NO GATO -> ARENA INICIA O NEXT LEVEL
+        //QUANDO O LEVEL ATINGIR O TOTAL DE NIVEIS -> CONGRATULATIONS!
+        //SE AS LIVES DO PLAYER == 0 -> GAME OVER!
+
+
+        //Starting numbers
+        int totalLevels = 3;
+        int level = 0;
+        int keys = 0;
+
+
+        while (keys < ConstantPosition.KEYS_AMOUNT[level]){
+            //CAT CAN BE TOUCHED AND
+            level++;
+
+            if (level > totalLevels - 1){
+                //YOU WON SCREEN
+                break;
+            }
+            arena.createLevel(level);
+            arena.play();
+
+            //WHEN COLLIDES WITH A KEY
+            //keys++;
+
+            //WHEN COLLIDES WITH AN ENEMY
+            //lives--;
+
+        }
+
     }
 
 }

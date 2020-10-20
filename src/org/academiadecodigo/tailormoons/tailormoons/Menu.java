@@ -18,18 +18,17 @@ public class Menu implements Interactable {
     private Picture background;
 
     /**
-     * The blinking text
+     * The start game text
      * @var pressSpaceText
      */
-    private Text pressSpaceText; //Replace with a .png image
+    //Replace with an image
+    private Text pressSpaceText;
 
     /**
      * A variable that saves when the space bar is pressed
      * @var spaceBar
      */
     private boolean spaceBar;
-
-    private int keyPressed;
 
     /**
      * Initializes and displays all the Main Menu items
@@ -39,6 +38,7 @@ public class Menu implements Interactable {
         background = new Picture(0, 0, "assets/menuBackground.jpg");
         background.draw();
 
+        //Replace with an image
         pressSpaceText = new Text(190, 450, "PRESS SPACE TO PUNISH YOU");
         pressSpaceText.setColor(Color.WHITE);
         pressSpaceText.draw();
@@ -51,7 +51,6 @@ public class Menu implements Interactable {
         background.delete();
         pressSpaceText.delete();
     }
-
 
     @Override
     public void setKey(int key, boolean state) {

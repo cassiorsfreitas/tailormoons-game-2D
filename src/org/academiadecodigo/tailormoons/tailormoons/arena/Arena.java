@@ -54,7 +54,7 @@ public class Arena {
     public void createLevel(int levelNumber) {
         rectangle = new Rectangle(0, 0, WIDTH, HEIGHT);
         rectangle.draw();
-        level.createEntities(1);
+        level.createEntities(levelNumber);
 
         collisionDetector = new CollisionDetector(level.getGameObjects());
         player.setCollisionDetector(collisionDetector);

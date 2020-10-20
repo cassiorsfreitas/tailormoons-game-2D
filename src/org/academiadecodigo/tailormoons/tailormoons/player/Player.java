@@ -30,11 +30,14 @@ public class Player implements Movable, Interactable {
     private boolean right;
     private int initialY;
 
+    private int lives;
+
     public Player() {
         position = new Position(400, 500, WIDTH, HEIGHT);
         rectangle = new Rectangle(position.getX(), position.getY(), WIDTH, HEIGHT);
         rectangle.setColor(Color.MAGENTA);
         rectangle.draw();
+        lives = 3;
     }
 
 
@@ -126,4 +129,7 @@ public class Player implements Movable, Interactable {
         this.collisionDetector = collisionDetector;
     }
 
+    public boolean isDead(){
+        return lives == 0;
+    }
 }
