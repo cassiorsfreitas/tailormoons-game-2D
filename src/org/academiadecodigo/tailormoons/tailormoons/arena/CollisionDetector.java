@@ -70,7 +70,6 @@ public class CollisionDetector {
         return true;
     }
 
-
     public boolean canMove(Direction direction) {
         return false;
     }

@@ -29,8 +29,10 @@ public class ConstantPosition {
 
     private static final int width = 35;
     private static final int height = 45;
-    public static final int[][] ENEMIES = {{20, 220, width, height}, {20, 220, width, height}, {350, 65, width, height}, {750, 220, width, height}, {550, 370, width, height},
-            {750, 525, width, height}};
+    public static final int[][] ENEMIES = {{20, 65, width, height, 0, 570}, {20, 220, width, height, 0, 415}, {350, 525, width, height, 0, 415}, {750, 220, width, height, 0, 415}, {550, 370, width, height, 0, 415},
+            {750, 525, width, height, 0, 800}};
+
+
 
 
 }

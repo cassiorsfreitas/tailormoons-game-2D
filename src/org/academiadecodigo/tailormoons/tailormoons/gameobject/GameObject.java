@@ -17,6 +17,10 @@ public abstract class GameObject {
         rectangle.draw();
     }
 
+    public void fill() {
+        rectangle.fill();
+    }
+
     public Position getPosition() {
         return position;
     }
