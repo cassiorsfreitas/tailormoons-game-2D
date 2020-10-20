@@ -48,9 +48,11 @@ public class Level {
 
 
         //TEMPORARY ENEMY
+        /*
         for (int i = 0; i < gameObjects.length; i++) {
             gameObjects[i] = new Sid();
         }
+         */
     }
 
     public GameObject[] getGameObjects() {

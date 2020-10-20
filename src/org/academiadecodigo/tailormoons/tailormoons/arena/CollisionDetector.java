@@ -44,8 +44,30 @@ public class CollisionDetector {
     }
 
 
-    public boolean canJump() {
-        return false;
+    public boolean canJump(Position position) {
+
+        int x = position.getX();
+        int y = position.getY();
+        int width = position.getWidth();
+
+        for (GameObject gameObject : gameObjects) {
+
+            if (gameObject instanceof Platform) {
+                int platformX = gameObject.getPosition().getX();
+                int platformY = gameObject.getPosition().getY();
+                int platformWidth = gameObject.getPosition().getWidth();
+                int platformHeight = gameObject.getPosition().getHeight();
+
+                for (int i = platformX; i < platformX + platformWidth; i++) {
+                    if (y - 1 == platformY + platformHeight  && i == x + (width / 2)) {
+                        return false;
+                    }
+                }
+            }
+
+        }
+
+        return true;
     }
 
 

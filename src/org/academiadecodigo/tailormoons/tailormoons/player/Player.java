@@ -14,7 +14,7 @@ public class Player implements Movable, Interactable {
     //Change to picture
     private final Rectangle rectangle;
     private Position position;
-    private static final int HEIGHT = 75;
+    private static final int HEIGHT = 50;
     private static final int WIDTH = 35;
     private final int speed = 1;
     private final int maxJump = 75;
@@ -34,7 +34,6 @@ public class Player implements Movable, Interactable {
         position = new Position(400, 400, WIDTH, HEIGHT);
         rectangle = new Rectangle(position.getX(), position.getY(), WIDTH, HEIGHT);
         rectangle.setColor(Color.MAGENTA);
-        // Hiding the player to test
         rectangle.draw();
     }
 
@@ -84,10 +83,15 @@ public class Player implements Movable, Interactable {
 
         isJumping = true;
 
-        if (position.getY() <= initialY - maxJump || position.getY() == 0) {
+        if (position.getY() <= initialY - maxJump || position.getY() == 0 || !collisionDetector.canJump(position)) {
             isJumping = false;
+            isFalling = true;
             return 0;
         }
+
+        isJumping = true;
+        isFalling = false;
+
         return Direction.UP.y;
     }
 
@@ -99,6 +103,7 @@ public class Player implements Movable, Interactable {
 
     private int gravity() {
         if (isJumping || !collisionDetector.hasGravity(position)) {
+
             return 0;
         }
         return gravityAcceleration;
