@@ -42,13 +42,17 @@ public class Arena {
      */
     private final Player player = new Player();
 
+    /**
+     * Constant delay that will be the speed of the game flux.
+     * @var DELAY
+     */
     private static final int DELAY = 5;
 
     /**
      * A reference to the collisionDetector that will be used to check collisions with GameObjects
      * @var collisionDetector
      */
-    //private CollisionDetector collisionDetector;
+    private CollisionDetector collisionDetector;
 
 
     /**
@@ -61,9 +65,7 @@ public class Arena {
         rectangle.draw();
         level.createEntities(levelNumber);
 
-        //collisionDetector = new CollisionDetector(level.getGameObjects());
         player.setCollisionDetector(new CollisionDetector(level.getGameObjects()));
-        //Verificar com todos
         for (GameObject gameObject : level.getGameObjects()) {
             if (gameObject instanceof Enemy) {
                 ((Enemy) gameObject).setCollisionDetector(new CollisionDetector(level.getGameObjects()));
@@ -90,6 +92,11 @@ public class Arena {
                     ((Movable) object).move();
                 }
             }
+
+            if(player.isDead()) {
+                //TEMOS DE VERIFICAR SE FALECEU DEVIDO AO COVID! E RETIRAR UMA VIDA
+            }
+
         }
     }
 

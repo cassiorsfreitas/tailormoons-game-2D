@@ -1,8 +1,7 @@
 package org.academiadecodigo.tailormoons.tailormoons.arena;
 
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.GameObject;
-import org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.Enemy;
-import org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.Sid;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Key;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Ladder;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Platform;
@@ -17,6 +16,12 @@ public class Level {
      *
      */
     private GameObject[] gameObjects = new GameObject[50]; //PODE SER TROCADO POR LINKEDLIST
+
+    public Level() {
+        //Picture background = new Picture(0,0,"assets/level1_background.jpg");
+        //background.draw();
+    }
+
 
     public void createEntities(int level) {
         for (int i = 0; i < ConstantPosition.PLATFORMS_AMOUNT[level]; i++) {
