@@ -16,7 +16,7 @@ public class ConstantPosition {
     public static final int[] PLATFORMS_AMOUNT = {15};
     public static final int[] LADDERS_AMOUNT = {4};
     public static final int[] KEYS_AMOUNT = {6};
-    public static final int[] ENEMIES_AMOUNT = {5};
+    public static final int[] ENEMIES_AMOUNT = {3};
 
     public static final int[][] PLATFORMS = {{0, 570, 800, 30}, {0, 415, 130, 30}, {500, 415, 150, 30}, {690, 415, 30, 30}, {250, 365, 75, 30},
             {375, 310, 120, 30}, {690, 265, 110, 30}, {0, 265, 200, 30}, {240, 140, 50, 30}, {0, 110, 130, 30},
@@ -29,14 +29,7 @@ public class ConstantPosition {
 
     private static final int width = 35;
     private static final int height = 45;
-    public static final int[][] ENEMIES = {{20, 220, width, height, 0, 400},
-            {20, 220, width, height, 0, 200},
+    public static final int[][] ENEMIES = {{325, 65, width, height, 325, 685},
             {350, 525, width, height, 0, 765},
-            {750, 220, width, height, 0, 300},
-            {500, 370, width, height, 500, 685},
-            {750, 525, width, height, 0, 100}};
-
-
-
-
+            {500, 370, width, height, 500, 685}};
 }
