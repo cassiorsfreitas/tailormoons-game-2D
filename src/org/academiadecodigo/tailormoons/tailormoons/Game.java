@@ -1,7 +1,9 @@
 package org.academiadecodigo.tailormoons.tailormoons;
 
 import org.academiadecodigo.tailormoons.tailormoons.arena.Arena;
+import org.academiadecodigo.tailormoons.tailormoons.arena.ConstantPosition;
 import org.academiadecodigo.tailormoons.tailormoons.handler.KeyboardListener;
+import org.academiadecodigo.tailormoons.tailormoons.player.Player;
 
 /**
  * Game is the class delegate to process all the logic of "what a game is".
@@ -15,6 +17,8 @@ public class Game {
      * @var menu
      */
     private Menu menu;
+
+    private static final int DELAY = 5;
 
     /**
      * Instantiation of class Arena to display the main window of the game
@@ -37,10 +41,26 @@ public class Game {
      * @param
      */
     public void init() {
-        menu = new Menu();
-        arena = new Arena();
         keyboardListener = new KeyboardListener();
-        keyboardListener.setEntity(arena.getPlayer());
+        menu = new Menu();
+
+        keyboardListener.setEntity(menu);
+        menu.display();
+
+        while (true) {
+            try {
+                Thread.sleep(DELAY);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            if (menu.getSpaceBar()) {
+                menu.clearDisplay();
+                arena = new Arena();
+                keyboardListener.setEntity(arena.getPlayer());
+                start();
+            }
+        }
     }
 
 
@@ -51,9 +71,43 @@ public class Game {
      */
     public void start() {
 
-        //TEM DE ENTRAR PRIMEIRO NO MENU E ESPERAR QUE SEJA DEVOLVIDO ALGO PARA INICIAR A ARENA.
-        arena.createLevel(2);
-        arena.play();
+        //ARENA INICIA O LEVEL
+        //QUANDO AS KEYS == AO TOTAL DE KEYS DO LEVEL -> PODE TOCAR NO GATO -> ARENA INICIA O NEXT LEVEL
+        //QUANDO O LEVEL ATINGIR O TOTAL DE NIVEIS -> CONGRATULATIONS!
+        //SE AS LIVES DO PLAYER == 0 -> GAME OVER!
+
+
+        //Starting numbers
+        int totalLevels = 3;
+        int level = 0;
+        int keys = 0;
+        int playerLives = 3;
+
+
+        while (level < totalLevels + 1) {
+
+            arena.createLevel(level);
+
+            while (playerLives > 0) {
+
+                while (keys < ConstantPosition.KEYS_AMOUNT[level]) {
+
+                    arena.play();
+
+                    //IF COLLIDES WITH A KEY
+                    //keys++;
+
+                    //IF COLLIDES WITH AN ENEMY
+                    //lives--;
+
+                    //IF TOUCHES CAT
+                    //level++;
+
+                }
+            }
+            //GAME OVER SCREEN
+        }
+        //YOU WON SCREEN
     }
 
 }
