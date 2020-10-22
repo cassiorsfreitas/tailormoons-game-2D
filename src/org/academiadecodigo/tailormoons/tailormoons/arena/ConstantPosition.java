@@ -15,11 +15,11 @@ public class ConstantPosition {
     private static final int PLATFORM_HEIGHT = 20;
     private static final int LADDER_WIDTH = 40;
     private static final int KEY_WIDTH = 30;
-    private static final int KEY_HEIGHT = 30;
+    private static final int KEY_HEIGHT = 15;
 
-    public static final int[] PLATFORMS_AMOUNT = {15, 19, 18};
-    public static final int[] LADDERS_AMOUNT = {4, 4, 4};
-    public static final int[] KEYS_AMOUNT = {6, 8, 6};
+    public static final int[] PLATFORMS_AMOUNT = {15, 19, 18, 18};
+    public static final int[] LADDERS_AMOUNT = {4, 4, 4, 4};
+    public static final int[] KEYS_AMOUNT = {6, 8, 6, 8};
 
 
     public static final int[][][] PLATFORMS = {
@@ -51,6 +51,16 @@ public class ConstantPosition {
                     {600, 260, 100, PLATFORM_HEIGHT}, {0, 220, 160, PLATFORM_HEIGHT}, {380, 200, 100, PLATFORM_HEIGHT},
                     {60, 100, 100, PLATFORM_HEIGHT}, {200, 100, 200, PLATFORM_HEIGHT}, {450, 100, 200, PLATFORM_HEIGHT},
                     {700, 100, 100, PLATFORM_HEIGHT}, {580, 380, 200, PLATFORM_HEIGHT}, {0, 580, 800, PLATFORM_HEIGHT}
+            },
+
+            //LEVEL 4
+            {
+                    {0, 580, 800, PLATFORM_HEIGHT}, {300, 480, 20, 100}, {480, 480, 20, 100},
+                    {0, 460, 40, PLATFORM_HEIGHT}, {80, 460, 300, PLATFORM_HEIGHT}, {420, 460, 300, PLATFORM_HEIGHT},
+                    {760, 460, 40, PLATFORM_HEIGHT}, {0, 340, 40, PLATFORM_HEIGHT}, {80, 340, 300, PLATFORM_HEIGHT},
+                    {420, 340, 300, PLATFORM_HEIGHT}, {760, 340, 40, PLATFORM_HEIGHT}, {150, 250, 50, PLATFORM_HEIGHT},
+                    {70, 180, 50, PLATFORM_HEIGHT}, {150, 110, 50, PLATFORM_HEIGHT}, {300, 180, 50, PLATFORM_HEIGHT},
+                    {400, 130, 50, PLATFORM_HEIGHT}, {520, 100, 50, PLATFORM_HEIGHT}, {700, 100, 100, PLATFORM_HEIGHT}
             }
 
     };
@@ -69,10 +79,14 @@ public class ConstantPosition {
             },
 
             //LEVEL 3
-
             {
                     {20, 300, LADDER_WIDTH, 180}, {160, 50, LADDER_WIDTH, 530}, {400, 430, LADDER_WIDTH, 150},
                     {640, 430, LADDER_WIDTH, 150}
+            },
+
+            //LEVEL 4
+            {
+                    {40, 300, 40, 280}, {380, 300, 40, 280}, {720, 300, 40, 280}, {200, 100, LADDER_WIDTH, 180}
             }
     };
 
@@ -94,6 +108,13 @@ public class ConstantPosition {
             {
                     {10, 190, KEY_WIDTH, KEY_HEIGHT}, {450, 260, KEY_WIDTH, KEY_HEIGHT}, {470, 60, KEY_WIDTH, KEY_HEIGHT},
                     {660, 230, KEY_WIDTH, KEY_HEIGHT}, {710, 360, KEY_WIDTH, KEY_HEIGHT}, {760, 540, KEY_WIDTH, KEY_HEIGHT}
+            },
+
+            //LEVEL 4
+            {
+                    {260, 500, KEY_WIDTH, KEY_HEIGHT}, {330, 550, KEY_WIDTH, KEY_HEIGHT}, {510, 550, KEY_WIDTH, KEY_HEIGHT},
+                    {200, 380, KEY_WIDTH, KEY_HEIGHT}, {570, 380, KEY_WIDTH, KEY_HEIGHT}, {40, 60, KEY_WIDTH, KEY_HEIGHT},
+                    {500, 200, KEY_WIDTH, KEY_HEIGHT}, {640, 180, KEY_WIDTH, KEY_HEIGHT}
             }
     };
 
