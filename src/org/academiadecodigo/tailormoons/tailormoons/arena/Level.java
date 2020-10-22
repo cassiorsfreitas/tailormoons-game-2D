@@ -3,7 +3,9 @@ package org.academiadecodigo.tailormoons.tailormoons.arena;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.GameObject;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.cat.Cat;
+import org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.Francisco;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.Sid;
+import org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.Vando;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Key;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Ladder;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Platform;
@@ -88,8 +90,18 @@ public class Level {
             int height = ConstantPosition.ENEMIES[i][3];
             int minMove = ConstantPosition.ENEMIES[i][4];
             int maxMove = ConstantPosition.ENEMIES[i][5];
-            gameObjects.add(new Sid(x, y, width, height, minMove, maxMove));
-            gameObjects.getLast().draw();
+            if (i == 0) {
+                gameObjects.add(new Sid(x, y, width, height, minMove, maxMove));
+                gameObjects.getLast().draw();
+            }
+            if (i == 1) {
+                gameObjects.add(new Francisco(x, y, width, height, minMove, maxMove));
+                gameObjects.getLast().draw();
+            }
+            if (i == 2) {
+                gameObjects.add(new Vando(x, y, width, height, minMove, maxMove));
+                gameObjects.getLast().draw();
+            }
         }
     }
 
