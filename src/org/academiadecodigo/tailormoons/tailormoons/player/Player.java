@@ -271,7 +271,7 @@ public class Player implements Movable, Interactable {
 
         if (collisionDetector.hasLadderCollision(position)) {
             isJumping = false;
-            isFalling = false;
+            jumped = 0;
             if (collisionDetector.canMoveUp(position)) {
                 return Direction.UP.y;
             }
@@ -287,7 +287,6 @@ public class Player implements Movable, Interactable {
         }
 
         isJumping = true;
-        isFalling = false;
 
         if (jumped >= 60) {
             jumpTimer++;
@@ -342,6 +341,8 @@ public class Player implements Movable, Interactable {
             return 0;
         }
 
+        isFalling = true;
+
         if (fell <= 30) {
             fallTimer++;
             if (fallTimer >= 3) {
@@ -363,7 +364,6 @@ public class Player implements Movable, Interactable {
         }
 
         fell++;
-        isFalling = true;
 
         return Direction.DOWN.y;
     }
