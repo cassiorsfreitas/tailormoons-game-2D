@@ -76,7 +76,7 @@ public class Player implements Movable, Interactable {
      * Constructor of player. It builds the picture of the player
      */
     public Player() {
-        position = new Position(400, 550, WIDTH, HEIGHT);
+        position = new Position(100, 550, WIDTH, HEIGHT);
 
     }
 

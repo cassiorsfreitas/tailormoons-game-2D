@@ -84,12 +84,12 @@ public class Level {
         //TEMPORARY ENEMY
         //gameObjects[2] = new Sid();
         for (int i = 0; i < ConstantPosition.ENEMIES_AMOUNT[level]; i++) {
-            int x = ConstantPosition.ENEMIES[i][0];
-            int y = ConstantPosition.ENEMIES[i][1];
-            int width = ConstantPosition.ENEMIES[i][2];
-            int height = ConstantPosition.ENEMIES[i][3];
-            int minMove = ConstantPosition.ENEMIES[i][4];
-            int maxMove = ConstantPosition.ENEMIES[i][5];
+            int x = ConstantPosition.ENEMIES[level][i][0];
+            int y = ConstantPosition.ENEMIES[level][i][1];
+            int width = ConstantPosition.ENEMIES[level][i][2];
+            int height = ConstantPosition.ENEMIES[level][i][3];
+            int minMove = ConstantPosition.ENEMIES[level][i][4];
+            int maxMove = ConstantPosition.ENEMIES[level][i][5];
             if (i == 0) {
                 gameObjects.add(new Sid(x, y, width, height, minMove, maxMove));
                 gameObjects.getLast().draw();

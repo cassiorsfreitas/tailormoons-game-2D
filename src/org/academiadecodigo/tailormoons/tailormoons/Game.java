@@ -86,7 +86,7 @@ public class Game {
 
         while (level < totalLevels + 1) {
 
-            arena.createLevel(level);
+            arena.createLevel(1);
 
             while (playerLives > 0) {
 
