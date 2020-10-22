@@ -90,15 +90,15 @@ public class Level {
             int height = ConstantPosition.ENEMIES[level][i][3];
             int minMove = ConstantPosition.ENEMIES[level][i][4];
             int maxMove = ConstantPosition.ENEMIES[level][i][5];
-            if (i == 0) {
+            if (i == 0 || i == 3) {
                 gameObjects.add(new Sid(x, y, width, height, minMove, maxMove));
                 gameObjects.getLast().draw();
             }
-            if (i == 1) {
+            if (i == 1 || i == 4) {
                 gameObjects.add(new Francisco(x, y, width, height, minMove, maxMove));
                 gameObjects.getLast().draw();
             }
-            if (i == 2) {
+            if (i == 2 || i == 5 || i == 6) {
                 gameObjects.add(new Vando(x, y, width, height, minMove, maxMove));
                 gameObjects.getLast().draw();
             }

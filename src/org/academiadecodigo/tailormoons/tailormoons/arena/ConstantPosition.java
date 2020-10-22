@@ -24,10 +24,10 @@ public class ConstantPosition {
 
     public static final int[] PLATFORMS_AMOUNT = {15, 19, 18, 18};
     public static final int[] LADDERS_AMOUNT = {4, 4, 4, 4};
-    public static final int[] KEYS_AMOUNT = {6, 8, 6, 8};
+    public static final int[] KEYS_AMOUNT = {6, 7, 6, 8};
 
 
-    public static final int[] ENEMIES_AMOUNT = {3, 3, 3, 3};
+    public static final int[] ENEMIES_AMOUNT = {3, 4, 5, 7};
     public static final int[][][] PLATFORMS = {
             //LEVEL 1
             {
@@ -66,7 +66,7 @@ public class ConstantPosition {
                     {760, 460, 40, PLATFORM_HEIGHT}, {0, 340, 40, PLATFORM_HEIGHT}, {80, 340, 300, PLATFORM_HEIGHT},
                     {420, 340, 300, PLATFORM_HEIGHT}, {760, 340, 40, PLATFORM_HEIGHT}, {150, 250, 50, PLATFORM_HEIGHT},
                     {70, 180, 50, PLATFORM_HEIGHT}, {150, 110, 50, PLATFORM_HEIGHT}, {300, 180, 50, PLATFORM_HEIGHT},
-                    {400, 130, 50, PLATFORM_HEIGHT}, {520, 100, 50, PLATFORM_HEIGHT}, {700, 100, 100, PLATFORM_HEIGHT}
+                    {400, 130, 50, PLATFORM_HEIGHT}, {520, 100, 50, PLATFORM_HEIGHT}, {700, 120, 100, PLATFORM_HEIGHT}
             }
 
     };
@@ -105,9 +105,9 @@ public class ConstantPosition {
 
             //LEVEL 2
             {
-                    {30, 380, KEY_WIDTH, KEY_HEIGHT}, {100, 235, KEY_WIDTH, KEY_HEIGHT}, {150, 95, KEY_WIDTH, KEY_HEIGHT},
-                    {410, 185, KEY_WIDTH, KEY_HEIGHT}, {640, 50, KEY_WIDTH, KEY_HEIGHT}, {750, 330, KEY_WIDTH, KEY_HEIGHT},
-                    {750, 530, KEY_WIDTH, KEY_HEIGHT}, {435, 360, KEY_WIDTH, KEY_HEIGHT}
+                    {30, 380, KEY_WIDTH, KEY_HEIGHT}, {100, 235, KEY_WIDTH, KEY_HEIGHT}, {410, 185, KEY_WIDTH, KEY_HEIGHT},
+                    {640, 50, KEY_WIDTH, KEY_HEIGHT}, {750, 330, KEY_WIDTH, KEY_HEIGHT}, {750, 530, KEY_WIDTH, KEY_HEIGHT},
+                    {435, 360, KEY_WIDTH, KEY_HEIGHT}
             },
 
             //LEVEL 3
@@ -131,15 +131,15 @@ public class ConstantPosition {
 
             //LEVEL 2
 
-            {40, 20, CAGE_WIDTH, CAGE_HEIGHT},
+            {100, 45, CAGE_WIDTH, CAGE_HEIGHT},
 
             //LEVEL 3
 
-            {40, 20, CAGE_WIDTH, CAGE_HEIGHT},
+            {700, 0, CAGE_WIDTH, CAGE_HEIGHT},
 
             //LEVEL 4
 
-            {40, 20, CAGE_WIDTH, CAGE_HEIGHT}
+            {700, 20, CAGE_WIDTH, CAGE_HEIGHT}
 
     };
 
@@ -157,21 +157,28 @@ public class ConstantPosition {
             //LEVEL 2
             {
 
-                    {325, 82, width, height, 325, 698},
-                    {350, 542, width, height, 0, 765},
-                    {500, 387, width, height, 500, 685}
+                    {35, 397, width, height, 35, 180},
+                    {640, 542, width, height, 600, 750},
+                    {690, 397, width, height, 600, 750},
+                    {610, 252, width, height, 600, 750}
             },
             //LEVEL 3
             {
-                    {325, 82, width, height, 325, 698},
-                    {350, 542, width, height, 0, 765},
-                    {500, 387, width, height, 500, 685}
+                    {100, 62, width, height, 100, 350},
+                    {450, 542, width, height, 0, 765},
+                    {650, 440, width, height, 0, 700},
+                    {580, 342, width, height, 580, 745},
+                    {750, 542, width, height, 0, 765}
             },
             //LEVEL 4
             {
-                    {325, 82, width, height, 325, 698},
-                    {350, 542, width, height, 0, 765},
-                    {500, 387, width, height, 500, 685}
+                    {100, 542, width, height, 15, 260},
+                    {355, 542, width, height, 320, 445},
+                    {515, 542, width, height, 515, 765},
+                    {35, 423, width, height, 35, 765},
+                    {465, 423, width, height, 35, 765},
+                    {35, 300, width, height, 35, 360},
+                    {450, 300, width, height, 450, 765}
             }
     };
 }
