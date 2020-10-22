@@ -10,18 +10,20 @@ import org.academiadecodigo.tailormoons.tailormoons.gameobject.Position;
 public abstract class Enemy extends GameObject implements Movable {
 
     protected CollisionDetector collisionDetector;
-    private boolean rightDirection;
+    protected boolean rightDirection;
     private Position position;
+    private String assetRight;
+    private String assetLeft;
+
 
     //IMPLEMENT SOON
     //private EnemyType enemyType;
 
+    public Enemy (int x, int y, int width, int height, int minMove, int maxMove, String assetRight, String assetLeft) {
+        super(x,y,width,height, minMove, maxMove,  ((int) (Math.random() * 2)), assetRight, assetLeft);
+        this.assetRight = assetRight;
+        this.assetLeft = assetLeft;
 
-    public Enemy (int x, int y, int width, int height, int minMove, int maxMove) {
-        super(x,y,width,height, minMove, maxMove);
-
-        int randomDirection = (int) (Math.random() * 2);
-        rightDirection = randomDirection == 0;
     }
 
     /**
@@ -38,6 +40,7 @@ public abstract class Enemy extends GameObject implements Movable {
             moveX = -1;
             if (initialX == super.getMinMove()) {
                 rightDirection = true;
+                picture.load(assetRight);
             }
         }
 
@@ -45,12 +48,13 @@ public abstract class Enemy extends GameObject implements Movable {
             moveX = 1;
             if (initialX == super.getMaxMove()) {
                 rightDirection = false;
+                picture.load(assetLeft);
             }
         }
 
 
         super.getPosition().setCoordinates(moveX, moveY);
-        rectangle.translate(super.getPosition().getX() - initialX, 0);
+        picture.translate(super.getPosition().getX() - initialX, 0);
     }
 
 

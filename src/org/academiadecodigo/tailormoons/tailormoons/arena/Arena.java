@@ -33,22 +33,35 @@ public class Arena {
      *
      * @var level
      */
-    private Level level = new Level();
+    private Level level;
 
     /**
      * A reference to the player that will be moving
      *
      * @var player
      */
-    private final Player player = new Player();
+    private Player player = new Player();
 
+    /**
+     * Number of lives from the begging of the game until the end.
+     *
+     * @var lives
+     */
+    private int lives = 3;
+
+    /**
+     * Constant delay that will be the speed of the game flux.
+     *
+     * @var DELAY
+     */
     private static final int DELAY = 5;
 
     /**
      * A reference to the collisionDetector that will be used to check collisions with GameObjects
+     *
      * @var collisionDetector
      */
-    //private CollisionDetector collisionDetector;
+    private CollisionDetector collisionDetector;
 
 
     /**
@@ -60,11 +73,11 @@ public class Arena {
         rectangle = new Rectangle(0, 0, WIDTH, HEIGHT);
         rectangle.draw();
 
-        level.createEntities(0);
+        level = new Level(levelNumber);
 
-        //collisionDetector = new CollisionDetector(level.getGameObjects());
+        player.display();
+
         player.setCollisionDetector(new CollisionDetector(level.getGameObjects()));
-        //Verificar com todos
         for (GameObject gameObject : level.getGameObjects()) {
             if (gameObject instanceof Enemy) {
                 ((Enemy) gameObject).setCollisionDetector(new CollisionDetector(level.getGameObjects()));
@@ -76,7 +89,7 @@ public class Arena {
     /**
      * For each iteration, with a delay of 'delay', Arena is going to move all entities.
      */
-    public void play() {
+    public void play(int levelNumber) {
 
         while (true) {
             try {
@@ -91,6 +104,26 @@ public class Arena {
                     ((Movable) object).move();
                 }
             }
+
+            if (player.isDead()) {
+                lives--;
+                if (lives == 0) {
+                    //RETURNAR PARA O GAME PK ACABOU GAME FUCKING OVER
+                }
+            }
+
+            GameObject key = player.getKeyTaken();
+            if (key != null) {
+                level.deleteKey(key);
+                player.resetKeyTaken();
+            }
+
+            if(player.getIsOverCat()) {
+                if (level.isWinnable()) {
+                    System.out.println("YOU FUCKING WIN");
+                }
+            }
+
         }
     }
 
