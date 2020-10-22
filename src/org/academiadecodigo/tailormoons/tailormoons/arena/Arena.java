@@ -4,6 +4,7 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.GameObject;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.Enemy;
 import org.academiadecodigo.tailormoons.tailormoons.player.Player;
+import org.academiadecodigo.tailormoons.tailormoons.sound.Sound;
 
 /**
  * Arena is the class that will work as field of the game window. It will also have
@@ -43,6 +44,13 @@ public class Arena {
     private Player player = new Player();
 
     /**
+     * A reference to the in game song
+     *
+     * @var player
+     */
+    private Sound sound;
+
+    /**
      * Number of lives from the begging of the game until the end.
      *
      * @var lives
@@ -76,6 +84,9 @@ public class Arena {
         level = new Level(levelNumber);
 
         player.display();
+
+        sound = new Sound("/assets/sounds/inGame.wav");
+        sound.play(true);
 
         player.setCollisionDetector(new CollisionDetector(level.getGameObjects()));
         for (GameObject gameObject : level.getGameObjects()) {

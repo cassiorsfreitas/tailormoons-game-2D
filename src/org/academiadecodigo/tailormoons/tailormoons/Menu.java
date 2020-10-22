@@ -5,6 +5,7 @@ import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.tailormoons.tailormoons.handler.Interactable;
+import org.academiadecodigo.tailormoons.tailormoons.sound.Sound;
 
 /**
  * Menu is a class that will display the game's welcome screen
@@ -17,12 +18,7 @@ public class Menu implements Interactable {
      */
     private Picture background;
 
-    /**
-     * The start game text
-     * @var pressSpaceText
-     */
-    //Replace with an image
-    private Text pressSpaceText;
+    private Sound sound;
 
     /**
      * A variable that saves when the space bar is pressed
@@ -34,14 +30,11 @@ public class Menu implements Interactable {
      * Initializes and displays all the Main Menu items
      */
     public void display() {
-
         background = new Picture(0, 0, "assets/menuBackground.jpg");
         background.draw();
 
-        //Replace with an image
-        pressSpaceText = new Text(190, 450, "PRESS SPACE TO PUNISH YOU");
-        pressSpaceText.setColor(Color.WHITE);
-        pressSpaceText.draw();
+        sound = new Sound("/assets/sounds/menu.wav");
+        sound.play(true);
     }
 
     /**
@@ -49,7 +42,7 @@ public class Menu implements Interactable {
      */
     public void clearDisplay(){
         background.delete();
-        pressSpaceText.delete();
+        sound.stop();
     }
 
     @Override
