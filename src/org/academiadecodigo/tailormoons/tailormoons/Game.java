@@ -71,43 +71,11 @@ public class Game {
      */
     public void start() {
 
-        //ARENA INICIA O LEVEL
-        //QUANDO AS KEYS == AO TOTAL DE KEYS DO LEVEL -> PODE TOCAR NO GATO -> ARENA INICIA O NEXT LEVEL
-        //QUANDO O LEVEL ATINGIR O TOTAL DE NIVEIS -> CONGRATULATIONS!
-        //SE AS LIVES DO PLAYER == 0 -> GAME OVER!
-
-
-        //Starting numbers
-        int totalLevels = 3;
         int level = 0;
-        int keys = 0;
-        int playerLives = 3;
 
+        arena.createLevel(level);
+        arena.play(level);
 
-        while (level < totalLevels + 1) {
-
-            arena.createLevel(level);
-
-            while (playerLives > 0) {
-
-                while (keys < ConstantPosition.KEYS_AMOUNT[level]) {
-
-                    arena.play(level);
-
-                    //IF COLLIDES WITH A KEY
-                    //keys++;
-
-                    //IF COLLIDES WITH AN ENEMY
-                    //lives--;
-
-                    //IF TOUCHES CAT
-                    //level++;
-
-                }
-            }
-            //GAME OVER SCREEN
-        }
-        //YOU WON SCREEN
     }
 
 }
