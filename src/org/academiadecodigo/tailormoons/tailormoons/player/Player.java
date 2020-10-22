@@ -57,25 +57,33 @@ public class Player implements Movable, Interactable {
     private boolean down;
     private boolean left;
     private boolean right;
-    private int initialY;
     private boolean isDead;
-    private GameObject keyTaken = null;
+    private boolean isOverCat;
     private boolean goingRight = true;
+
+    private GameObject keyTaken = null;
+
     private int steps = 1;
     private int stepsUp = 1;
     private int pixelSteps;
-    private boolean isOverCat;
+    private int jumped;
+    private int jumpTimer;
+    private int fell;
+    private int fallTimer;
 
 
     /**
      * Constructor of player. It builds the picture of the player
      */
     public Player() {
-        position = new Position(400, 400, WIDTH, HEIGHT);
+        position = new Position(400, 550, WIDTH, HEIGHT);
 
     }
 
 
+    /**
+     * Display the player picture.
+     */
     public void display() {
         picture = new Picture(position.getX(), position.getY(), "assets/playerRight1.png");
         picture.draw();
@@ -100,7 +108,6 @@ public class Player implements Movable, Interactable {
 
         if (up) {
             if (!isJumping && !isFalling) {
-                this.initialY = position.getY();
                 moveY = moveUp();
             }
         }
@@ -271,7 +278,9 @@ public class Player implements Movable, Interactable {
             return 0;
         }
 
-        if (position.getY() <= initialY - maxJump || position.getY() == 0 || !collisionDetector.canMoveUp(position)) {
+        if (jumped >= maxJump || position.getY() == 0 || !collisionDetector.canMoveUp(position)) {
+            jumped = 0;
+            //FALL
             isJumping = false;
             isFalling = true;
             return 0;
@@ -279,6 +288,28 @@ public class Player implements Movable, Interactable {
 
         isJumping = true;
         isFalling = false;
+
+        if (jumped >= 60) {
+            jumpTimer++;
+            if (jumpTimer >= 3) {
+                jumpTimer = 0;
+                jumped++;
+                return Direction.UP.y;
+            }
+            return 0;
+        }
+
+        if (jumped >= 30) {
+            jumpTimer++;
+            if (jumpTimer >= 2) {
+                jumpTimer = 0;
+                jumped++;
+                return Direction.UP.y;
+            }
+            return 0;
+        }
+
+        jumped++;
 
         return Direction.UP.y;
     }
@@ -306,11 +337,35 @@ public class Player implements Movable, Interactable {
      */
     private int gravity() {
         if (isJumping || !collisionDetector.hasGravity(position) || collisionDetector.hasLadderCollision(position)) {
+            fell = 0;
             isFalling = false;
             return 0;
         }
+
+        if (fell <= 30) {
+            fallTimer++;
+            if (fallTimer >= 3) {
+                fallTimer = 0;
+                fell++;
+                return Direction.DOWN.y;
+            }
+            return 0;
+        }
+
+        if (fell <= 60) {
+            fallTimer++;
+            if (fallTimer >= 2) {
+                fallTimer = 0;
+                fell++;
+                return Direction.DOWN.y;
+            }
+            return 0;
+        }
+
+        fell++;
         isFalling = true;
-        return gravityAcceleration;
+
+        return Direction.DOWN.y;
     }
 
 
@@ -370,6 +425,11 @@ public class Player implements Movable, Interactable {
     }
 
 
+    /**
+     * Get if the parameter that says if the player is OverCat. Calculated on verifyMove().
+     *
+     * @return
+     */
     public boolean getIsOverCat() {
         return isOverCat;
     }
