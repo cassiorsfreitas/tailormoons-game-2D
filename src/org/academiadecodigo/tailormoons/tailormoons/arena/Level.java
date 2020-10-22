@@ -1,10 +1,16 @@
 package org.academiadecodigo.tailormoons.tailormoons.arena;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+import org.academiadecodigo.tailormoons.tailormoons.Game;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.GameObject;
+import org.academiadecodigo.tailormoons.tailormoons.gameobject.cat.Cat;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Key;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Ladder;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Platform;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.LinkedList;
 
 /**
  * Level is a class where entities of GameObjects are going to be created.
@@ -15,22 +21,34 @@ public class Level {
     /**
      *
      */
-    private GameObject[] gameObjects = new GameObject[50]; //PODE SER TROCADO POR LINKEDLIST
+    private LinkedList<GameObject> gameObjects = new LinkedList<>();
 
-    public Level() {
-        //Picture background = new Picture(0,0,"assets/level1_background.jpg");
-        //background.draw();
+
+    public Level(int levelNumber) {
+        Picture background = new Picture(0, 0, "assets/background-level-1.jpg");
+        background.draw();
+
+        createEntities(levelNumber);
     }
 
 
-    public void createEntities(int level) {
+    private void createEntities(int level) {
+
         for (int i = 0; i < ConstantPosition.PLATFORMS_AMOUNT[level]; i++) {
             int x = ConstantPosition.PLATFORMS[level][i][0];
             int y = ConstantPosition.PLATFORMS[level][i][1];
             int width = ConstantPosition.PLATFORMS[level][i][2];
             int height = ConstantPosition.PLATFORMS[level][i][3];
-            gameObjects[i] = new Platform(x, y, width, height);
-            gameObjects[i].show();
+
+            int platformDivisions = width / ConstantPosition.PLATFORM_WIDTH;
+            for (int j = 0; j < platformDivisions; j++) {
+                gameObjects.add(new Platform(x + j * ConstantPosition.PLATFORM_WIDTH, y, ConstantPosition.PLATFORM_WIDTH, height));
+                gameObjects.getLast().show();
+            }
+            if (width % ConstantPosition.PLATFORM_WIDTH != 0) {
+                gameObjects.add(new Platform(x + width - ConstantPosition.PLATFORM_WIDTH, y, ConstantPosition.PLATFORM_WIDTH, height));
+                gameObjects.getLast().show();
+            }
         }
 
         for (int i = 0; i < ConstantPosition.LADDERS_AMOUNT[level]; i++) {
@@ -38,8 +56,16 @@ public class Level {
             int y = ConstantPosition.LADDERS[level][i][1];
             int width = ConstantPosition.LADDERS[level][i][2];
             int height = ConstantPosition.LADDERS[level][i][3];
-            gameObjects[ConstantPosition.PLATFORMS_AMOUNT[level] + i] = new Ladder(x, y, width, height);
-            gameObjects[ConstantPosition.PLATFORMS_AMOUNT[level] + i].show();
+
+            int ladderDivisions = height / ConstantPosition.LADDER_HEIGHT;
+            for (int j = 0; j < ladderDivisions; j++) {
+                gameObjects.add(new Ladder(x, y + j * ConstantPosition.LADDER_HEIGHT, width, ConstantPosition.LADDER_HEIGHT));
+                gameObjects.getLast().show();
+            }
+            if (height % ConstantPosition.LADDER_HEIGHT != 0) {
+                gameObjects.add(new Ladder(x, y + height - ConstantPosition.LADDER_HEIGHT, width, ConstantPosition.LADDER_HEIGHT));
+                gameObjects.getLast().show();
+            }
         }
 
         for (int i = 0; i < ConstantPosition.KEYS_AMOUNT[level]; i++) {
@@ -47,17 +73,39 @@ public class Level {
             int y = ConstantPosition.KEYS[level][i][1];
             int width = ConstantPosition.KEYS[level][i][2];
             int height = ConstantPosition.KEYS[level][i][3];
-            gameObjects[ConstantPosition.PLATFORMS_AMOUNT[level] + ConstantPosition.LADDERS_AMOUNT[level] + i] = new Key(x, y, width, height);
-            gameObjects[ConstantPosition.PLATFORMS_AMOUNT[level] + ConstantPosition.LADDERS_AMOUNT[level] + i].show();
+
+            gameObjects.add(new Key(x, y, width, height));
+            gameObjects.getLast().show();
         }
 
+        gameObjects.add(new Cat(ConstantPosition.CAT_CAGES[level][0], ConstantPosition.CAT_CAGES[level][1], ConstantPosition.CAT_CAGES[level][2], ConstantPosition.CAT_CAGES[level][3]));
+        gameObjects.getLast().show();
 
         //TEMPORARY ENEMY
         //gameObjects[2] = new Sid();
     }
 
-    public GameObject[] getGameObjects() {
+
+    public LinkedList<GameObject> getGameObjects() {
         return gameObjects;
+    }
+
+
+    public void deleteKey(GameObject key) {
+        ((Key) key).setTaken();
+        key.delete();
+    }
+
+
+    public boolean isWinnable() {
+        for(GameObject entity : gameObjects) {
+            if(entity instanceof Key) {
+                if (!((Key) entity).getTaken()) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 }

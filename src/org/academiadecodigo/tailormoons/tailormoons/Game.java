@@ -92,7 +92,7 @@ public class Game {
 
                 while (keys < ConstantPosition.KEYS_AMOUNT[level]) {
 
-                    arena.play();
+                    arena.play(level);
 
                     //IF COLLIDES WITH A KEY
                     //keys++;

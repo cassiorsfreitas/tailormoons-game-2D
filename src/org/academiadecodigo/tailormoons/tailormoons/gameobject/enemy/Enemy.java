@@ -14,7 +14,7 @@ public abstract class Enemy extends GameObject implements Movable {
     private boolean rightDirection;
 
     public Enemy () {
-        super(0,0,0,0);
+        super(0,0,0,0, "playerLeft1.png");
         newEnemy();
         display();
 

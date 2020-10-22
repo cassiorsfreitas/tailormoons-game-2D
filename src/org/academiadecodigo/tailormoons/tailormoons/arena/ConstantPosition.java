@@ -10,10 +10,15 @@ package org.academiadecodigo.tailormoons.tailormoons.arena;
  */
 public class ConstantPosition {
 
-    private static final int PLATFORM_HEIGHT = 20;
-    private static final int LADDER_WIDTH = 40;
-    private static final int KEY_WIDTH = 30;
-    private static final int KEY_HEIGHT = 30;
+    public static final int PLATFORM_HEIGHT = 20;
+    public static final int LADDER_WIDTH = 40;
+    public static final int KEY_WIDTH = 30;
+    public static final int KEY_HEIGHT = 30;
+    public static final int CAGE_WIDTH = 100;
+    public static final int CAGE_HEIGHT = 100;
+
+    public static final int PLATFORM_WIDTH = 30;
+    public static final int LADDER_HEIGHT = 15;
 
     public static final int[] PLATFORMS_AMOUNT = {15, 2};
     public static final int[] LADDERS_AMOUNT = {4, 2};
@@ -57,6 +62,17 @@ public class ConstantPosition {
             {
                     {20, 370, KEY_WIDTH, KEY_HEIGHT}, {20, 220, KEY_WIDTH, KEY_HEIGHT}
             }
+    };
+
+    public static final int[][] CAT_CAGES = {
+            //LEVEL1
+
+            {10, 20, CAGE_WIDTH, CAGE_HEIGHT},
+
+            //LEVEL 2
+
+            {40, 20, CAGE_WIDTH, CAGE_HEIGHT}
+
     };
 
 

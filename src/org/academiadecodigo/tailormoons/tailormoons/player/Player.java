@@ -7,6 +7,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.tailormoons.tailormoons.arena.CollisionDetector;
 import org.academiadecodigo.tailormoons.tailormoons.arena.Movable;
 import org.academiadecodigo.tailormoons.tailormoons.direction.Direction;
+import org.academiadecodigo.tailormoons.tailormoons.gameobject.GameObject;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.Position;
 import org.academiadecodigo.tailormoons.tailormoons.handler.Interactable;
 
@@ -17,10 +18,8 @@ public class Player implements Movable, Interactable {
 
     /**
      * Picture of the player that will be translated over time.
-     * (It is a rectangle now just for test purpose)
      */
-    private final Rectangle rectangle;
-    private final Picture picture;
+    private Picture picture;
 
     /**
      * Position of the player over time. From time Position class.
@@ -31,7 +30,7 @@ public class Player implements Movable, Interactable {
      * Height and Width of the player. They are static proprieties because any class can get those information.
      */
     private static final int HEIGHT = 50;
-    private static final int WIDTH = 35;
+    private static final int WIDTH = 23;
 
     /**
      * All the stats of the player.
@@ -60,9 +59,12 @@ public class Player implements Movable, Interactable {
     private boolean right;
     private int initialY;
     private boolean isDead;
-
-    //REMOVE AND TALK ABOUT LIVES
-    private int lives;
+    private GameObject keyTaken = null;
+    private boolean goingRight = true;
+    private int steps = 1;
+    private int stepsUp = 1;
+    private int pixelSteps;
+    private boolean isOverCat;
 
 
     /**
@@ -70,15 +72,13 @@ public class Player implements Movable, Interactable {
      */
     public Player() {
         position = new Position(400, 400, WIDTH, HEIGHT);
-        picture = new Picture(position.getX(), position.getY(), "assets/tailormoon2.png");
+
+    }
+
+
+    public void display() {
+        picture = new Picture(position.getX(), position.getY(), "assets/playerRight1.png");
         picture.draw();
-
-        rectangle = new Rectangle(position.getX(), position.getY(), WIDTH, HEIGHT);
-        rectangle.setColor(Color.MAGENTA);
-        rectangle.draw();
-
-        //MIGHT BE REMOVED
-        lives = 3;
     }
 
 
@@ -93,7 +93,6 @@ public class Player implements Movable, Interactable {
         int initialY = position.getY();
         int moveX = 0;
         int moveY = 0;
-        int gravity;
 
         if (isJumping) {
             moveY = moveUp();
@@ -121,28 +120,137 @@ public class Player implements Movable, Interactable {
             }
         }
 
+        verifyMove(moveX, moveY, initialX, initialY);
+
+    }
+
+
+    /**
+     * This method verify every movement the player will have so
+     *
+     * @param moveX
+     * @param moveY
+     * @param initialX
+     * @param initialY
+     */
+    private void verifyMove(int moveX, int moveY, int initialX, int initialY) {
+
+        int gravity;
 
         gravity = gravity();
 
+        if (pixelSteps == 25) {
+            pixelSteps = 0;
+            changePicture(moveX, moveY);
+        }
+        pixelSteps++;
+
         position.setCoordinates(moveX, moveY + gravity);
 
-        rectangle.translate(position.getX() - initialX, position.getY() - initialY);
+        picture.translate(position.getX() - initialX, position.getY() - initialY);
 
 
         if (collisionDetector.hasEnemyCollision(position)) {
             isDead = true;
-            //CHANGE IMAGE TO A DEAD FUCKING PERSON
+            picture.load("playerDied.png");
             return;
         }
 
-        if (collisionDetector.hasKeyCollision(position)) {
-
+        GameObject key = collisionDetector.hasKeyCollision(position);
+        if (key != null) {
+            keyTaken = key;
         }
 
         if (collisionDetector.hasCatCollision(position)) {
-
+            isOverCat = true;
+        } else {
+            isOverCat = false;
         }
 
+    }
+
+
+    /**
+     * Change the picture of the player while it moves
+     *
+     * @param moveX
+     * @param moveY
+     */
+    private void changePicture(int moveX, int moveY) {
+
+        if (collisionDetector.hasLadderCollision(position)) {
+
+            steps = 0;
+
+            if (moveY != 0) {
+
+                if (stepsUp++ > 1) {
+                    stepsUp = 1;
+                }
+
+                switch (stepsUp) {
+                    case 1:
+                        picture.load("playerUpRight.png");
+                        return;
+
+                    case 2:
+                        picture.load("playerUpLeft.png");
+                        return;
+                }
+
+            }
+
+            return;
+        }
+
+        if (moveX > 0) {
+            if (goingRight) {
+                steps++;
+                if (steps == 3) {
+                    steps = 1;
+                }
+            } else {
+                goingRight = true;
+                steps = 1;
+            }
+        } else if (moveX < 0) {
+            if (!goingRight) {
+                steps++;
+                if (steps == 3) {
+                    steps = 1;
+                }
+            } else {
+                goingRight = false;
+                steps = 1;
+            }
+        } else {
+            steps = 0;
+        }
+
+        switch (steps) {
+            case 0:
+                if (goingRight) {
+                    picture.load("playerRight1.png");
+                    return;
+                }
+                picture.load("playerLeft1.png");
+                return;
+
+            case 1:
+                if (goingRight) {
+                    picture.load("playerRight2.png");
+                    return;
+                }
+                picture.load("playerLeft2.png");
+                return;
+
+            case 2:
+                if (goingRight) {
+                    picture.load("playerRight3.png");
+                    return;
+                }
+                picture.load("playerLeft3.png");
+        }
     }
 
 
@@ -241,5 +349,28 @@ public class Player implements Movable, Interactable {
      */
     public boolean isDead() {
         return isDead;
+    }
+
+
+    /**
+     * Return the key that was taken.
+     *
+     * @return GameObject
+     */
+    public GameObject getKeyTaken() {
+        return keyTaken;
+    }
+
+
+    /**
+     * Method to reset the keyTaken to null.
+     */
+    public void resetKeyTaken() {
+        keyTaken = null;
+    }
+
+
+    public boolean getIsOverCat() {
+        return isOverCat;
     }
 }

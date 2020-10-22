@@ -9,6 +9,8 @@ import org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Key;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Ladder;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Platform;
 
+import java.util.LinkedList;
+
 /**
  * CollisionDetector detects all collisions that happens between the Player/Enemy with platforms, keys and ladders.
  */
@@ -17,7 +19,7 @@ public class CollisionDetector {
     /**
      * Array of all GameObjects used in this level.
      */
-    private final GameObject[] gameObjects;
+    private final LinkedList<GameObject> gameObjects;
 
     /**
      * Constructor of CollisionDetector. It will instantiate the array gameObjects with all the gameObjects that are in
@@ -25,7 +27,7 @@ public class CollisionDetector {
      *
      * @param gameObjects
      */
-    public CollisionDetector(GameObject[] gameObjects) {
+    public CollisionDetector(LinkedList<GameObject> gameObjects) {
         this.gameObjects = gameObjects;
     }
 
@@ -186,21 +188,21 @@ public class CollisionDetector {
      * It uses position of the entity that called it.
      *
      * @param position
-     * @return boolean
+     * @return GameObject
      */
-    public boolean hasKeyCollision(Position position) {
+    public GameObject hasKeyCollision(Position position) {
 
         for (GameObject gameObject : gameObjects) {
 
             if (gameObject instanceof Key) {
 
-                if (checkCollision(gameObject, position)) return true;
+                if (checkCollision(gameObject, position)) return gameObject;
 
             }
 
         }
 
-        return false;
+        return null;
     }
 
 
