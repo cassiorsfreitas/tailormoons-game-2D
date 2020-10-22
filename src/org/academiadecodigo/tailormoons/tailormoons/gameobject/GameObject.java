@@ -4,8 +4,8 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public abstract class GameObject {
 
-    private final Position position;
-    protected final Rectangle rectangle;
+    protected final Position position;
+    protected  Rectangle rectangle;
 
     public GameObject(int x, int y, int width, int height) {
         position = new Position(x, y, width, height);

@@ -52,7 +52,6 @@ public class Level {
             int y = ConstantPosition.ELEVATORS[level][i][1];
             int width = ConstantPosition.ELEVATORS[level][i][2];
             int height = ConstantPosition.ELEVATORS[level][i][3];
-            //NAO PERCEBO A LINHA DE BAIXO
             gameObjects[ConstantPosition.PLATFORMS_AMOUNT[level] + ConstantPosition.LADDERS_AMOUNT[level] + ConstantPosition.KEYS_AMOUNT[level] + i] = new Elevator(x, y, width, height);
             gameObjects[ConstantPosition.PLATFORMS_AMOUNT[level] + ConstantPosition.LADDERS_AMOUNT[level] + ConstantPosition.KEYS_AMOUNT[level] + i].show();
         }

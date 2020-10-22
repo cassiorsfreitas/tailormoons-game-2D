@@ -58,7 +58,7 @@ public class ConstantPosition {
             },
             //LEVEL 2
             {
-                    {200, 200, ELEVATOR_WIDTH, ELEVATOR_HEIGHT}, {200, 400, ELEVATOR_WIDTH, ELEVATOR_HEIGHT}
+                    {200, 300, ELEVATOR_WIDTH, ELEVATOR_HEIGHT}, {200, 600, ELEVATOR_WIDTH, ELEVATOR_HEIGHT}
             }
     };
 
