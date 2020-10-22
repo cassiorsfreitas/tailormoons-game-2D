@@ -144,7 +144,7 @@ public class CollisionDetector {
      * @param position
      * @return boolean
      */
-    public boolean hasLadderCollision(Position position) {
+    public boolean  hasLadderCollision(Position position) {
 
         for (GameObject gameObject : gameObjects) {
 
