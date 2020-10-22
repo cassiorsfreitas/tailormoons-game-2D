@@ -14,8 +14,8 @@ public class ConstantPosition {
     private static final int LADDER_WIDTH = 40;
     private static final int KEY_WIDTH = 30;
     private static final int KEY_HEIGHT = 30;
-    private static final int ELEVATOR_HEIGHT = 15;
-    private static final int ELEVATOR_WIDTH = 80;
+    private static final int ELEVATOR_HEIGHT = 20;
+    private static final int ELEVATOR_WIDTH = 60;
 
 
 
@@ -58,7 +58,7 @@ public class ConstantPosition {
             },
             //LEVEL 2
             {
-                    {200, 200, ELEVATOR_WIDTH, ELEVATOR_HEIGHT}, {200, 200, ELEVATOR_WIDTH, ELEVATOR_HEIGHT}
+                    {200, 200, ELEVATOR_WIDTH, ELEVATOR_HEIGHT}, {200, 400, ELEVATOR_WIDTH, ELEVATOR_HEIGHT}
             }
     };
 

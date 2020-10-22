@@ -79,7 +79,7 @@ public class Game {
 
         //Starting numbers
         int totalLevels = 3;
-        int level = 0;
+        int level = 1;
         int keys = 0;
         int playerLives = 3;
 

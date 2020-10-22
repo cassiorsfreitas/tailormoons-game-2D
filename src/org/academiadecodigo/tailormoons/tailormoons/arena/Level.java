@@ -43,7 +43,7 @@ public class Level {
             int y = ConstantPosition.KEYS[level][i][1];
             int width = ConstantPosition.KEYS[level][i][2];
             int height = ConstantPosition.KEYS[level][i][3];
-            gameObjects[ConstantPosition.PLATFORMS_AMOUNT[level] + ConstantPosition.LADDERS_AMOUNT[level] + i] = new Elevator(x, y, width, height);
+            gameObjects[ConstantPosition.PLATFORMS_AMOUNT[level] + ConstantPosition.LADDERS_AMOUNT[level] + i] = new Key(x, y, width, height);
             gameObjects[ConstantPosition.PLATFORMS_AMOUNT[level] + ConstantPosition.LADDERS_AMOUNT[level] + i].show();
         }
 
@@ -53,8 +53,8 @@ public class Level {
             int width = ConstantPosition.ELEVATORS[level][i][2];
             int height = ConstantPosition.ELEVATORS[level][i][3];
             //NAO PERCEBO A LINHA DE BAIXO
-            gameObjects[ConstantPosition.PLATFORMS_AMOUNT[level] + ConstantPosition.LADDERS_AMOUNT[level] + ConstantPosition.KEYS_AMOUNT[level] + i] = new Key(x, y, width, height);
-            gameObjects[ConstantPosition.PLATFORMS_AMOUNT[level] + ConstantPosition.LADDERS_AMOUNT[level] + i].show();
+            gameObjects[ConstantPosition.PLATFORMS_AMOUNT[level] + ConstantPosition.LADDERS_AMOUNT[level] + ConstantPosition.KEYS_AMOUNT[level] + i] = new Elevator(x, y, width, height);
+            gameObjects[ConstantPosition.PLATFORMS_AMOUNT[level] + ConstantPosition.LADDERS_AMOUNT[level] + ConstantPosition.KEYS_AMOUNT[level] + i].show();
         }
 
 
