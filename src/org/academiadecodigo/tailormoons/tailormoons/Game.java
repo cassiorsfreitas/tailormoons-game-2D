@@ -78,7 +78,7 @@ public class Game {
 
         while (hasWin) {
 
-            if (level == 4) {
+            if (level == 3) {
 
                 Picture winBackground = new Picture(0, 0, "assets/win.png");
                 winBackground.draw();
