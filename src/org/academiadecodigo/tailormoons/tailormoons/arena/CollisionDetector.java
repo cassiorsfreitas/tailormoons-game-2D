@@ -3,6 +3,7 @@ package org.academiadecodigo.tailormoons.tailormoons.arena;
 import org.academiadecodigo.tailormoons.tailormoons.direction.Direction;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.GameObject;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.Position;
+import org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Elevator;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Platform;
 
 /**
@@ -44,6 +45,33 @@ public class CollisionDetector {
     }
 
 
+    public boolean hasElevatorCollision(Position position) {
+
+        int x = position.getX();
+        int y = position.getY();
+        int height = position.getHeight();
+        int width = position.getWidth();
+
+        for (GameObject gameObject : gameObjects) {
+
+            if (gameObject instanceof Elevator) {
+                int elevatorX = gameObject.getPosition().getX();
+                int elevatorY = gameObject.getPosition().getY();
+                int elevatorWidth = gameObject.getPosition().getWidth();
+
+                for (int i = elevatorX; i < elevatorX + elevatorWidth; i++) {
+                    if (y + height + 1 == elevatorY && i >= x && i <= x + width) {
+                        return true;
+                    }
+                }
+            }
+
+        }
+
+        return false;
+    }
+
+
     public boolean canJump(Position position) {
 
         int x = position.getX();
@@ -59,7 +87,7 @@ public class CollisionDetector {
                 int platformHeight = gameObject.getPosition().getHeight();
 
                 for (int i = platformX; i < platformX + platformWidth; i++) {
-                    if (y - 1 == platformY + platformHeight  && i == x + (width / 2)) {
+                    if (y - 1 == platformY + platformHeight && i == x + (width / 2)) {
                         return false;
                     }
                 }

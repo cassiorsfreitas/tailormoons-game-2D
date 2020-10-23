@@ -75,6 +75,11 @@ public class Player implements Movable, Interactable {
             gravity = gravity();
         }
 
+        if (collisionDetector.hasElevatorCollision(position)) {
+            moveY = -1;
+            gravity = 0;
+        }
+
         position.setCoordinates(moveX, moveY + gravity);
 
         rectangle.translate(position.getX() - initialX, position.getY() - initialY);
@@ -137,7 +142,7 @@ public class Player implements Movable, Interactable {
         this.collisionDetector = collisionDetector;
     }
 
-    public boolean isDead(){
+    public boolean isDead() {
         return lives == 0;
     }
 }

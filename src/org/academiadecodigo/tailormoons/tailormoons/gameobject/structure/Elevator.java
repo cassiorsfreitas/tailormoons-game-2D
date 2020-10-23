@@ -8,7 +8,6 @@ import org.academiadecodigo.tailormoons.tailormoons.gameobject.Position;
 
 public class Elevator extends GameObject implements Movable {
 
-
     public Elevator(int x, int y, int width, int height) {
         super(x, y, width, height);
     }
@@ -27,7 +26,7 @@ public class Elevator extends GameObject implements Movable {
             rectangle.draw();
         }
 
-        System.out.println(position.getY());
+        //System.out.println(position.getY());
 
     }
 }
