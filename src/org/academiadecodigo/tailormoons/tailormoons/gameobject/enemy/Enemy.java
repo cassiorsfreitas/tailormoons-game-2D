@@ -12,8 +12,8 @@ public abstract class Enemy extends GameObject implements Movable {
     protected CollisionDetector collisionDetector;
     protected boolean rightDirection;
     private Position position;
-    private String assetRight;
-    private String assetLeft;
+    private final String assetRight;
+    private final String assetLeft;
 
 
     //IMPLEMENT SOON
@@ -40,7 +40,7 @@ public abstract class Enemy extends GameObject implements Movable {
             moveX = -1;
             if (initialX == super.getMinMove()) {
                 rightDirection = true;
-                picture.load(assetRight);
+                picture.load("assets/" + assetRight);
             }
         }
 
@@ -48,7 +48,7 @@ public abstract class Enemy extends GameObject implements Movable {
             moveX = 1;
             if (initialX == super.getMaxMove()) {
                 rightDirection = false;
-                picture.load(assetLeft);
+                picture.load("assets/" + assetLeft);
             }
         }
 

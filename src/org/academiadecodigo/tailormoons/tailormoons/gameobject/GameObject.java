@@ -12,7 +12,7 @@ public abstract class GameObject {
 
     public GameObject(int x, int y, int width, int height, String asset) {
         position = new Position(x, y, width, height);
-        picture = new Picture(x, y, asset);
+        picture = new Picture(x, y, "assets/" + asset);
     }
 
     public GameObject(int x, int y, int width, int height, int minMove, int maxMove, int rightDirection, String assetRight, String assetLeft) {

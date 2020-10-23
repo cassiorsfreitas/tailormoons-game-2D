@@ -205,11 +205,11 @@ public class Player implements Movable, Interactable {
 
                 switch (stepsUp) {
                     case 1:
-                        picture.load("playerUpRight.png");
+                        picture.load("assets/playerUpRight.png");
                         return;
 
                     case 2:
-                        picture.load("playerUpLeft.png");
+                        picture.load("assets/playerUpLeft.png");
                         return;
                 }
 
@@ -245,26 +245,26 @@ public class Player implements Movable, Interactable {
         switch (steps) {
             case 0:
                 if (goingRight) {
-                    picture.load("playerRight1.png");
+                    picture.load("assets/playerRight1.png");
                     return;
                 }
-                picture.load("playerLeft1.png");
+                picture.load("assets/playerLeft1.png");
                 return;
 
             case 1:
                 if (goingRight) {
-                    picture.load("playerRight2.png");
+                    picture.load("assets/playerRight2.png");
                     return;
                 }
-                picture.load("playerLeft2.png");
+                picture.load("assets/playerLeft2.png");
                 return;
 
             case 2:
                 if (goingRight) {
-                    picture.load("playerRight3.png");
+                    picture.load("assets/playerRight3.png");
                     return;
                 }
-                picture.load("playerLeft3.png");
+                picture.load("assets/playerLeft3.png");
         }
     }
 
