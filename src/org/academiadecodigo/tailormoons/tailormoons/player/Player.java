@@ -389,10 +389,18 @@ public class Player implements Movable, Interactable {
     @Override
     public void setKey(int key, boolean state) {
         switch (key) {
-            case KeyboardEvent.KEY_UP -> up = state;
-            case KeyboardEvent.KEY_DOWN -> down = state;
-            case KeyboardEvent.KEY_LEFT -> left = state;
-            case KeyboardEvent.KEY_RIGHT -> right = state;
+            case KeyboardEvent.KEY_UP:
+                up = state;
+                break;
+            case KeyboardEvent.KEY_DOWN:
+                down = state;
+                break;
+            case KeyboardEvent.KEY_LEFT:
+                left = state;
+                break;
+            case KeyboardEvent.KEY_RIGHT:
+                right = state;
+                break;
         }
     }
 
