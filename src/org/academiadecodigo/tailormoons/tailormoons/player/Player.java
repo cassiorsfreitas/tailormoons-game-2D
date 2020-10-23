@@ -167,7 +167,7 @@ public class Player implements Movable, Interactable {
 
         if (collisionDetector.hasEnemyCollision(position)) {
             isDead = true;
-            picture.load("playerDied.png");
+            picture.load("assets/playerDied.png");
             return;
         }
 
