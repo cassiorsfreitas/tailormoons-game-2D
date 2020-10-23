@@ -1,9 +1,11 @@
 package org.academiadecodigo.tailormoons.tailormoons;
 
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.tailormoons.tailormoons.arena.Arena;
 import org.academiadecodigo.tailormoons.tailormoons.arena.ConstantPosition;
 import org.academiadecodigo.tailormoons.tailormoons.handler.KeyboardListener;
 import org.academiadecodigo.tailormoons.tailormoons.player.Player;
+import org.academiadecodigo.tailormoons.tailormoons.sound.Sound;
 
 /**
  * Game is the class delegate to process all the logic of "what a game is".
@@ -57,8 +59,8 @@ public class Game {
             if (menu.getSpaceBar()) {
                 menu.clearDisplay();
                 arena = new Arena();
-                keyboardListener.setEntity(arena.getPlayer());
-                start();
+                arena.setKeyboardListener(keyboardListener);
+                return;
             }
         }
     }
@@ -69,13 +71,41 @@ public class Game {
      *
      * @param
      */
-    public void start() {
+    public void start() throws InterruptedException {
 
         int level = 0;
+        boolean hasWin = true;
 
-        arena.createLevel(3);
-        arena.play(level);
+        while (hasWin) {
+
+            if (level == 4) {
+
+                Picture winBackground = new Picture(0, 0, "assets/win.png");
+                winBackground.draw();
+
+                Sound winSound = new Sound("/assets/sounds/win.wav");
+                winSound.play(true);
+
+                Thread.sleep(3000);
+
+                winSound.stop();
+
+                winBackground.delete();
+                return;
+            }
+
+            arena.createLevel(level);
+            hasWin = arena.play(level);
+            level++;
+
+        }
+
+        Picture loseBackground = new Picture(0, 0, "assets/gameOver.jpg");
+        loseBackground.draw();
+
+        Thread.sleep(5000);
+
+        loseBackground.delete();
 
     }
-
 }

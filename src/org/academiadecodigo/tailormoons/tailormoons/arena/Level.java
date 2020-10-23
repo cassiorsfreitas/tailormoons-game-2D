@@ -21,18 +21,22 @@ public class Level {
     /**
      *
      */
-    private LinkedList<GameObject> gameObjects = new LinkedList<>();
+    private final LinkedList<GameObject> gameObjects = new LinkedList<>();
+
+    private final Picture background;
+
+    private int level;
 
 
-    public Level(int levelNumber) {
-        Picture background = new Picture(0, 0, "assets/background-level-1.jpg");
-        background.draw();
+    public Level(int level) {
+        background = new Picture(0, 0, "assets/background-level-1.jpg");
 
-        createEntities(levelNumber);
+        this.level = level;
+
     }
 
 
-    private void createEntities(int level) {
+    public void createEntities() {
 
         for (int i = 0; i < ConstantPosition.PLATFORMS_AMOUNT[level]; i++) {
             int x = ConstantPosition.PLATFORMS[level][i][0];
@@ -43,11 +47,9 @@ public class Level {
             int platformDivisions = width / ConstantPosition.PLATFORM_WIDTH;
             for (int j = 0; j < platformDivisions; j++) {
                 gameObjects.add(new Platform(x + j * ConstantPosition.PLATFORM_WIDTH, y, ConstantPosition.PLATFORM_WIDTH, height));
-                gameObjects.getLast().show();
             }
             if (width % ConstantPosition.PLATFORM_WIDTH != 0) {
                 gameObjects.add(new Platform(x + width - ConstantPosition.PLATFORM_WIDTH, y, ConstantPosition.PLATFORM_WIDTH, height));
-                gameObjects.getLast().show();
             }
         }
 
@@ -60,11 +62,9 @@ public class Level {
             int ladderDivisions = height / ConstantPosition.LADDER_HEIGHT;
             for (int j = 0; j < ladderDivisions; j++) {
                 gameObjects.add(new Ladder(x, y + j * ConstantPosition.LADDER_HEIGHT, width, ConstantPosition.LADDER_HEIGHT));
-                gameObjects.getLast().show();
             }
             if (height % ConstantPosition.LADDER_HEIGHT != 0) {
                 gameObjects.add(new Ladder(x, y + height - ConstantPosition.LADDER_HEIGHT, width, ConstantPosition.LADDER_HEIGHT));
-                gameObjects.getLast().show();
             }
         }
 
@@ -75,14 +75,11 @@ public class Level {
             int height = ConstantPosition.KEYS[level][i][3];
 
             gameObjects.add(new Key(x, y, width, height));
-            gameObjects.getLast().show();
         }
 
         gameObjects.add(new Cat(ConstantPosition.CAT_CAGES[level][0], ConstantPosition.CAT_CAGES[level][1], ConstantPosition.CAT_CAGES[level][2], ConstantPosition.CAT_CAGES[level][3]));
-        gameObjects.getLast().show();
 
-        //TEMPORARY ENEMY
-        //gameObjects[2] = new Sid();
+
         for (int i = 0; i < ConstantPosition.ENEMIES_AMOUNT[level]; i++) {
             int x = ConstantPosition.ENEMIES[level][i][0];
             int y = ConstantPosition.ENEMIES[level][i][1];
@@ -92,16 +89,20 @@ public class Level {
             int maxMove = ConstantPosition.ENEMIES[level][i][5];
             if (i == 0 || i == 3) {
                 gameObjects.add(new Sid(x, y, width, height, minMove, maxMove));
-                gameObjects.getLast().draw();
             }
             if (i == 1 || i == 4) {
                 gameObjects.add(new Francisco(x, y, width, height, minMove, maxMove));
-                gameObjects.getLast().draw();
             }
             if (i == 2 || i == 5 || i == 6) {
                 gameObjects.add(new Vando(x, y, width, height, minMove, maxMove));
-                gameObjects.getLast().draw();
             }
+        }
+
+        /**
+         * DRAW
+         */
+        for (GameObject object : gameObjects) {
+            object.draw();
         }
     }
 
@@ -118,14 +119,19 @@ public class Level {
 
 
     public boolean isWinnable() {
-        for(GameObject entity : gameObjects) {
-            if(entity instanceof Key) {
+        for (GameObject entity : gameObjects) {
+            if (entity instanceof Key) {
                 if (!((Key) entity).getTaken()) {
                     return false;
                 }
             }
         }
         return true;
+    }
+
+
+    public Picture getBackground() {
+        return background;
     }
 
 }

@@ -75,8 +75,8 @@ public class Player implements Movable, Interactable {
     /**
      * Constructor of player. It builds the picture of the player
      */
-    public Player() {
-        position = new Position(100, 550, WIDTH, HEIGHT);
+    public Player(int x, int y) {
+        position = new Position(x, y, WIDTH, HEIGHT);
 
     }
 
@@ -87,6 +87,14 @@ public class Player implements Movable, Interactable {
     public void display() {
         picture = new Picture(position.getX(), position.getY(), "assets/playerRight1.png");
         picture.draw();
+    }
+
+
+    /**
+     *
+     */
+    public void die() {
+        picture.delete();
     }
 
 
@@ -280,7 +288,6 @@ public class Player implements Movable, Interactable {
 
         if (jumped >= maxJump || position.getY() == 0 || !collisionDetector.canMoveUp(position)) {
             jumped = 0;
-            //FALL
             isJumping = false;
             isFalling = true;
             return 0;
@@ -288,17 +295,7 @@ public class Player implements Movable, Interactable {
 
         isJumping = true;
 
-        if (jumped >= 60) {
-            jumpTimer++;
-            if (jumpTimer >= 3) {
-                jumpTimer = 0;
-                jumped++;
-                return Direction.UP.y;
-            }
-            return 0;
-        }
-
-        if (jumped >= 30) {
+        if (jumped >= 65) {
             jumpTimer++;
             if (jumpTimer >= 2) {
                 jumpTimer = 0;
@@ -307,6 +304,17 @@ public class Player implements Movable, Interactable {
             }
             return 0;
         }
+/*
+        if (jumped >= 60) {
+            jumpTimer++;
+            if (jumpTimer >= 2) {
+                jumpTimer = 0;
+                jumped++;
+                return Direction.UP.y;
+            }
+            return 0;
+        }
+ */
 
         jumped++;
 
@@ -343,17 +351,7 @@ public class Player implements Movable, Interactable {
 
         isFalling = true;
 
-        if (fell <= 30) {
-            fallTimer++;
-            if (fallTimer >= 3) {
-                fallTimer = 0;
-                fell++;
-                return Direction.DOWN.y;
-            }
-            return 0;
-        }
-
-        if (fell <= 60) {
+        if (fell <= 10) {
             fallTimer++;
             if (fallTimer >= 2) {
                 fallTimer = 0;
@@ -362,6 +360,17 @@ public class Player implements Movable, Interactable {
             }
             return 0;
         }
+/*
+        if (fell <= 15) {
+            fallTimer++;
+            if (fallTimer >= 2) {
+                fallTimer = 0;
+                fell++;
+                return Direction.DOWN.y;
+            }
+            return 0;
+        }
+*/
 
         fell++;
 

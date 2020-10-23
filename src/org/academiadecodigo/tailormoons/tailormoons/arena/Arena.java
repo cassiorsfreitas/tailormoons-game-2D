@@ -1,8 +1,11 @@
 package org.academiadecodigo.tailormoons.tailormoons.arena;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.GameObject;
 import org.academiadecodigo.tailormoons.tailormoons.gameobject.enemy.Enemy;
+import org.academiadecodigo.tailormoons.tailormoons.gameobject.structure.Key;
+import org.academiadecodigo.tailormoons.tailormoons.handler.KeyboardListener;
 import org.academiadecodigo.tailormoons.tailormoons.player.Player;
 import org.academiadecodigo.tailormoons.tailormoons.sound.Sound;
 
@@ -41,7 +44,7 @@ public class Arena {
      *
      * @var player
      */
-    private Player player = new Player();
+    private Player player;
 
     /**
      * A reference to the in game song
@@ -55,7 +58,9 @@ public class Arena {
      *
      * @var lives
      */
-    private int lives = 3;
+    private int lives = 5;
+
+    private final Picture[] livesHeads = new Picture[lives];
 
     /**
      * Constant delay that will be the speed of the game flux.
@@ -65,12 +70,18 @@ public class Arena {
     private static final int DELAY = 5;
 
     /**
-     * A reference to the collisionDetector that will be used to check collisions with GameObjects
      *
-     * @var collisionDetector
      */
-    private CollisionDetector collisionDetector;
+    private KeyboardListener keyboardListener;
 
+
+    public Arena() {
+
+        rectangle = new Rectangle(0, 0, WIDTH, HEIGHT);
+        rectangle.draw();
+
+
+    }
 
     /**
      * Method delegate to create the field, GameObjects, collisionDetector as well as give their reference to enemy/player
@@ -78,36 +89,35 @@ public class Arena {
      * @param levelNumber
      */
     public void createLevel(int levelNumber) {
-        rectangle = new Rectangle(0, 0, WIDTH, HEIGHT);
-        rectangle.draw();
 
         level = new Level(levelNumber);
-
-        player.display();
+        level.getBackground().draw();
+        level.createEntities();
 
         sound = new Sound("/assets/sounds/inGame.wav");
+        sound.setLoop(50);
         sound.play(true);
 
-        player.setCollisionDetector(new CollisionDetector(level.getGameObjects()));
+        initPlayer(levelNumber);
+
         for (GameObject gameObject : level.getGameObjects()) {
             if (gameObject instanceof Enemy) {
                 ((Enemy) gameObject).setCollisionDetector(new CollisionDetector(level.getGameObjects()));
             }
         }
+
+        drawLives();
     }
 
 
     /**
      * For each iteration, with a delay of 'delay', Arena is going to move all entities.
      */
-    public void play(int levelNumber) {
+    public boolean play(int levelNumber) throws InterruptedException {
 
         while (true) {
-            try {
-                Thread.sleep(DELAY);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
+            Thread.sleep(DELAY);
 
             player.move();
             for (GameObject object : level.getGameObjects()) {
@@ -116,26 +126,73 @@ public class Arena {
                 }
             }
 
+
             if (player.isDead()) {
+
                 lives--;
+                livesHeads[lives].delete();
+
+                Sound loseLiveSound = new Sound("/assets/sounds/die.wav");
+                loseLiveSound.play(true);
+
+                Thread.sleep(2000);
+
+                loseLiveSound.close();
+
                 if (lives == 0) {
-                    //RETURNAR PARA O GAME PK ACABOU GAME FUCKING OVER
+                    sound.close();
+                    return false;
                 }
+
+
+                player.die();
+                initPlayer(levelNumber);
+
             }
+
 
             GameObject key = player.getKeyTaken();
             if (key != null) {
+
+                if (!((Key) key).getTaken()) {
+                    Sound keyTakenSound = new Sound("/assets/sounds/ping.wav");
+                    //keyTakenSound.play(true);
+                }
+
                 level.deleteKey(key);
                 player.resetKeyTaken();
             }
 
-            if(player.getIsOverCat()) {
+
+            if (player.getIsOverCat()) {
                 if (level.isWinnable()) {
-                    System.out.println("YOU FUCKING WIN");
+
+                    sound.close();
+
+                    Picture cat = new Picture(ConstantPosition.CAT_CAGES[levelNumber][0] + 22, ConstantPosition.CAT_CAGES[levelNumber][1] + 44, "assets/cat.png");
+                    cat.draw();
+
+                    Sound catReleaseSound = new Sound("/assets/sounds/levelUp.wav");
+                    catReleaseSound.play(true);
+
+                    Thread.sleep(2000);
+
+                    catReleaseSound.stop();
+
+                    cat.delete();
+                    return true;
+
                 }
             }
-
         }
+    }
+
+
+    public void initPlayer(int levelNumber) {
+        player = new Player(ConstantPosition.PLAYER_POSITION[levelNumber][0], ConstantPosition.PLAYER_POSITION[levelNumber][1]);
+        player.display();
+        keyboardListener.setEntity(player);
+        player.setCollisionDetector(new CollisionDetector(level.getGameObjects()));
     }
 
 
@@ -146,6 +203,19 @@ public class Arena {
      */
     public Player getPlayer() {
         return player;
+    }
+
+
+    public void setKeyboardListener(KeyboardListener keyboardListener) {
+        this.keyboardListener = keyboardListener;
+    }
+
+
+    public void drawLives() {
+        for (int i = 0; i < lives; i++) {
+            livesHeads[i] = new Picture(342 + (i * 25), 10, "assets/life.png");
+            livesHeads[i].draw();
+        }
     }
 
 }
