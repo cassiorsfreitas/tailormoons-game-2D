@@ -1,0 +1,65 @@
+### BUGS TO FIX ###
+
+- The window is not closing on close
+
+
+- The logo and title doesn't appear
+
+
+- Hitbox on ladder is HUGEEEEEE
+
+
+
+
+### FEATURES ###
+
+- Level Creator
+-- Drag and drop objects
+-- Export/import file
+-- Test mode
+-- InGame creation
+(Main objetive is to create a new project that can create new levels just by drag & drop images. At the end the output will be all the data that the game need to implement the level. Ultimatly we gonna try to fusion this project to the game, so the player will be able to create his own levels and maybe publish them)
+
+
+- Checkpoints & Saves
+-- Offline by level/checkpoint
+-- Online by level/checkpoint
+(The player will be able to save some states of the character. So when the game is restarted, the player can resume his gameplay. Might be offline and on an online cloud)
+
+
+- Behavior of enemies
+-- More random movement
+-- Enemys that follow the player
+-- Jumping enemies
+-- Enemies can go up and down the ladder
+-- Flying enemies
+(The ideia is to make more enemies and make their movement more random, so the difficulty will be greater)
+
+
+- Big boss / Boss levels
+(Creating some levels with a boss, will make the game more challenging)
+
+
+- Power ups / Weapons
+-- Appear on the map
+-- Can be bought on shop with coins
+(Might be the greatest update, the implementation of a totally new gameplay with the possibility to buy items, skins, cloths, armor, weapons, etc)
+
+
+- 1280x720 resolution
+-- User options
+(We want that Tailormoon run in all computers and with the best appearance possibly, so giving the user a possibility to choose the resolution would be great)
+
+
+- Add walls
+-- Add doors
+(A new possibility to make the game more than just catching some keys and saving a cat. Now we should be able to open doors by doing some tasks)
+
+
+- Countdown / Scores
+-- Coins
+(We need a way to give the player a shop to buy stuffs. We need, as well, a way to create a leaderboard)
+
+
+- Black levels / Light around the player
+(New levels are going to appear with different behaviors)
