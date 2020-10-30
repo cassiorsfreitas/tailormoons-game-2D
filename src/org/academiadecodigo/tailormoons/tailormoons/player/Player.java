@@ -1,7 +1,5 @@
 package org.academiadecodigo.tailormoons.tailormoons.player;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 import org.academiadecodigo.tailormoons.tailormoons.arena.CollisionDetector;
